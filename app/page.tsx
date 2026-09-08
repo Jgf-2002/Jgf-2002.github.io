@@ -124,7 +124,7 @@ export default function Home() {
 
       <section className="award-band"><div><span>SELECTED RECOGNITION</span><strong>全国大学生电子设计竞赛 · 全国二等奖</strong></div><div><strong>创新方法大赛 · 全国一等奖</strong><strong>创新体验竞赛 · 全国一等奖</strong></div><p>累计 10+ 项国家级 / 省级奖项</p></section>
 
-      <footer id="contact"><div className="footer-lead"><p className="eyebrow">CONTACT / 联系</p><h2>讨论控制、AI 与量化研究。</h2><p>这是第一版个人履历站，内容与项目链接将持续补充。</p></div><div className="contact-grid"><a href="mailto:gefei20020421@163.com"><span>EMAIL</span><strong>gefei20020421@163.com</strong><Arrow /></a><a href="tel:13352134131"><span>PHONE</span><strong>133-5213-4131</strong><Arrow /></a><div><span>WECHAT</span><strong>Geography020421</strong></div><a href="https://github.com/Jgf-2002" target="_blank" rel="noreferrer"><span>GITHUB</span><strong>Jgf-2002</strong><Arrow /></a></div><div className="footer-bottom"><span>© 2026 GeFei Jia</span><span>Designed as an evolving research notebook.</span><a href="#top">BACK TO TOP ↑</a></div></footer>
+      <footer id="contact"><div className="footer-lead"><p className="eyebrow">CONTACT / 联系</p><h2>讨论控制、AI 与量化研究。</h2><p>这是第一版个人履历站，内容与项目链接将持续补充。</p></div><div className="contact-grid"><a href="mailto:gefei20020421@163.com"><span>EMAIL</span><strong>gefei20020421@163.com</strong><Arrow /></a><a href="https://github.com/Jgf-2002" target="_blank" rel="noreferrer"><span>GITHUB</span><strong>Jgf-2002</strong><Arrow /></a></div><div className="footer-bottom"><span>© 2026 GeFei Jia</span><span>Designed as an evolving research notebook.</span><a href="#top">BACK TO TOP ↑</a></div></footer>
     </main>
   );
 }
