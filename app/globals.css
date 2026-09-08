@@ -67,6 +67,13 @@ blockquote { margin: 22px 0; padding: 14px 18px; color: #334d6a; background: #f4
 .sketch-node { stroke-width: 1.3; }.sketch-node.blue { fill: #eaf0f6; stroke: #8da9c7; }.sketch-node.pale { fill: #f3f4f6; stroke: #acb4bf; }.sketch-node.gold { fill: #f6f0e1; stroke: #c8a65a; }.sketch-node.green { fill: #eaf3ed; stroke: #8aac95; }
 .node-code { fill: #6a83a2; font-size: 8px; }.node-name { fill: #23344a; font-size: 15px; font-weight: 700; }.node-note { fill: #7a8491; font-size: 8px; font-style: italic; }.loop-label { fill: #b66c30; font-size: 9px; font-style: italic; }
 
+.workflow-intro { max-width: 670px; margin: -4px 0 21px; color: #5d6a78; font-size: 13px; line-height: 1.8; }
+.quant-figure { margin: 0; }
+.quant-figure-scroll { overflow-x: auto; padding: 10px; background: #fbfaf7; border: 1px solid #e3dfd5; border-radius: 6px; scrollbar-width: thin; scrollbar-color: #c8b175 #f2efe7; }
+.quant-figure img { width: 100%; min-width: 820px; height: auto; display: block; }
+.quant-figure figcaption { display: flex; justify-content: space-between; gap: 18px; margin-top: 10px; color: #8a929c; font-size: 9px; letter-spacing: .04em; }
+.quant-figure figcaption a { color: #8b6b24; font-weight: 700; white-space: nowrap; }
+
 .academic-list { display: grid; }
 .academic-entry { display: grid; grid-template-columns: 128px 1fr; gap: 22px; padding: 22px 0; border-bottom: 1px solid #e8ebef; }
 .academic-entry:first-child { padding-top: 4px; }.academic-entry:last-child { padding-bottom: 2px; border-bottom: 0; }
@@ -97,6 +104,7 @@ blockquote { margin: 22px 0; padding: 14px 18px; color: #334d6a; background: #f4
   .topbar { height: auto; min-height: 58px; }.topbar-inner { min-height: 58px; flex-wrap: wrap; gap: 10px 20px; padding: 10px 0; }.topbar nav { order: 3; width: 100%; overflow-x: auto; padding: 5px 0 2px; scrollbar-width: none; }.topbar nav::-webkit-scrollbar { display: none; }.topbar nav a::after { bottom: -4px; }.portfolio-link { margin-left: auto; }
   .academic-shell { grid-template-columns: 1fr; margin-top: 24px; }.scholar-sidebar { position: static; display: grid; grid-template-columns: 220px 1fr; }.identity-card { grid-row: span 2; }.sidebar-stats { grid-column: span 2; }.profile-list { padding-top: 20px; }
   .evidence-row { grid-template-columns: 1fr; }.academic-heading { align-items: flex-start; flex-direction: column; }.academic-heading > p { margin-left: 38px; }.research-sketch { min-width: 680px; }.biosketch { overflow-x: auto; }
+  .quant-workflow-section { overflow: hidden; }.quant-figure-scroll { margin-inline: -8px; }.quant-figure img { min-width: 900px; }
 }
 @media (max-width: 540px) {
   .topbar-inner, .academic-shell { width: min(100% - 24px, 1080px); }.topbar nav { gap: 20px; }.portfolio-link { display: none; }.academic-shell { gap: 14px; }.scholar-sidebar { display: block; }.identity-card { padding-block: 24px; }.sidebar-stats { display: none; }
