@@ -1,0 +1,53 @@
+{
+  "verified_on": "2026-09-09",
+  "scope": "Public, sanitized results from the remote research environment",
+  "alpha_daily_report": {
+    "status": "completed",
+    "exit_code": 0,
+    "label_date": "2026-09-09",
+    "factor_date": "2026-09-08",
+    "universe": 4300,
+    "sample_count": 4169,
+    "coverage_percent": 96.95,
+    "horizons_days": [5, 10, 20],
+    "performance_values_disclosed": false
+  },
+  "beta_synthetic_tests": [
+    {
+      "suite": "factor-combination",
+      "status": "passed",
+      "tests_passed": 10,
+      "tests_total": 10,
+      "elapsed_seconds": 0.878
+    },
+    {
+      "suite": "direction-and-causality",
+      "status": "passed",
+      "tests_passed": 12,
+      "tests_total": 12,
+      "elapsed_seconds": 0.272
+    }
+  ],
+  "macro_audit_snapshot": {
+    "mode": "read-only inspection of existing audit output",
+    "pit_spotchecks_passed": 72,
+    "pit_spotchecks_total": 72,
+    "deterministic_rerun_consistent": true,
+    "sensitivity_variants": 46,
+    "state_timeline_segments": 26,
+    "historical_stress_checks_passed": 4,
+    "historical_stress_checks_total": 6,
+    "retained_limitations": [
+      "2015 market dislocation",
+      "2018 deleveraging phase"
+    ]
+  },
+  "not_disclosed": [
+    "strategy formulas",
+    "portfolio weights",
+    "signal values",
+    "IC or RankIC values",
+    "security-level details",
+    "server and filesystem information"
+  ]
+}
