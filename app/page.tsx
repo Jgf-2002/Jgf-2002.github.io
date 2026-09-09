@@ -111,7 +111,7 @@ export default function Home() {
 
           <section className="paper-section">
             <AcademicHeading id="experience" mark="PR" title="Professional Experience" subtitle="研究与行业经历" />
-            <div className="academic-list">{experience.map((item) => <article className="academic-entry" key={item.org}><div className="entry-year">{item.date}</div><div><h3>{item.org}</h3><p className="entry-role">{item.role}</p><ul>{item.points.map((point) => <li key={point}>{point}</li>)}</ul></div></article>)}</div>
+            <div className="academic-list">{experience.map((item, index) => index === 0 ? <details className="academic-entry expandable-experience" key={item.org}><summary><div className="entry-year">{item.date}<small>CLICK TO EXPLORE</small></div><div><div className="experience-title-line"><h3>{item.org}</h3><span className="expand-cue">查看研究工作 <b>＋</b></span></div><p className="entry-role">{item.role}</p><p className="entry-preview">Alpha 因子、市场 Beta、宏观配置与 point-in-time 研究体系</p></div></summary><div className="experience-expanded"><ul>{item.points.map((point) => <li key={point}>{point}</li>)}</ul><figure className="experience-figure"><div><img src="/quant-research-architecture.svg" alt="大寒智能量化实习中的 Alpha、市场 Beta、宏观配置、PIT 数据和研究验证图谱" /></div><figcaption><span>Research map · editable SVG</span><a href="/quant-research-architecture.svg" target="_blank" rel="noreferrer">打开完整图谱 <External /></a></figcaption></figure></div></details> : <article className="academic-entry" key={item.org}><div className="entry-year">{item.date}</div><div><h3>{item.org}</h3><p className="entry-role">{item.role}</p><ul>{item.points.map((point) => <li key={point}>{point}</li>)}</ul></div></article>)}</div>
           </section>
 
           <section className="paper-section">
@@ -132,7 +132,7 @@ export default function Home() {
         </div>
       </div>
 
-      <footer className="academic-footer"><span>© 2026 GeFei Jia · Academic Profile v1.0</span><span>Last updated: September 2026</span></footer>
+      <footer className="academic-footer"><span>© 2026 GeFei Jia · Academic Profile v1.1</span><span>Last updated: September 2026</span></footer>
     </main>
   );
 }
