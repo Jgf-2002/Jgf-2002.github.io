@@ -44,15 +44,16 @@ const education = [
 ];
 
 const experience = [
-  { date: "2025.11 — 至今", org: "大寒智能量化公司", role: "量化研发实习生 · Alpha 研究与量化基础设施", points: ["围绕价值、质量、成长、现金流、营运效率与分析师预期等因子族，搭建从研究假设、批量生成到评估晋级的 Alpha 研究链路。", "整理 253 项因子规范并完成自动化代码生成，其中 178 项形成可运行实现；持续监控 IC / RankIC、覆盖率及跨年度稳定性。", "构建 131 GB 基本面与分析师 PIT 数据、Dolphin 共享内存缓存及 PySim 批量验证链路，并通过配置化质量检查控制数据完整性与时点可见性。", "建立预注册、滚动样本外、置换空检验、机制诊断和消融实验组成的研究证据链；并行完成 A 股宏观择时与多资产配置研究交付。"] },
+  { date: "2025.11 — 至今", org: "大寒智能量化公司", role: "量化研发实习生 · Alpha Research / Quant Infrastructure", points: ["负责 A 股基本面与分析师预期 Alpha 研究：整理 253 个因子定义，完成 178 个 Dolphin / PySim 可运行实现，并维护日频横截面 IC、RankIC 与覆盖率监控。", "重做基本面和分析师数据的 point-in-time 链路；按公告日与可得日还原历史截面，并为 Tushare、聚源 JY 建立统一字段口径和生产质量检查。", "开展市场 Beta 因子与宏观配置研究。因子必须经过样本外、逐年稳定性、空检验、共线性与残差增量检验；证据不足的结果明确否决或暂缓部署。"] },
   { date: "2024.11 — 2025.04", org: "东软集团", role: "大模型评测实习生 · 项目负责人", points: ["负责基于大模型的周期信息抓取项目。", "以 Selenium、浏览器截图和 EasyOCR 应对反爬并提取文本。", "结合讯飞星火语义切分、DeepSeek RAG、飞书多维表格与 Coze 自动化工作流。"] },
   { date: "2023.12 — 2024.01", org: "纵存科技 · SAS 验证部", role: "测试实习生", points: ["参与 SAS IP 中 SATA 协议状态机验证，覆盖协议规范、操作场景与边界条件。", "完善 UVM 验证仿真环境，设计测试激励并完成 IP 功能验证。"] },
 ];
 
 const quantWorkstreams = [
-  { code: "ALPHA", metric: "253 / 178", label: "规范 / 可运行实现", title: "Alpha 因子研究", body: "覆盖价值、质量、成长、现金流、营运效率及分析师预期等因子族；以全市场日频 IC / RankIC、滚动样本外、空检验、机制诊断与消融实验筛选候选信号。" },
-  { code: "DATA", metric: "131 GB", label: "PIT 研究数据", title: "量化数据基础设施", body: "打通 Tushare、聚源 JY 到 PIT 投影、质量检查、Dolphin 共享缓存和 PySim 批量验证的研究消费链路，控制未来信息泄漏。" },
-  { code: "MACRO", metric: "46×", label: "敏感性变体", title: "宏观择时与配置", body: "构建月频宏观 PIT 面板与多资产信号体系，通过回测、参数敏感性、确定性复跑和历史时点审计形成可复现研究交付。" },
+  { code: "01", label: "CROSS-SECTIONAL ALPHA", title: "A 股横截面 Alpha 研究", scope: "253 个统一因子定义 · 178 个可运行实现 · 日频研究监控", points: ["将价值、质量、成长、现金流、营运效率和分析师预期等因子整理为统一定义，并接入 Dolphin / PySim 批量计算。", "每日跟踪全市场 IC、RankIC、覆盖率和跨年度稳定性。候选因子还需通过滚动样本外、环移空检验、机制诊断与消融实验，不以一次样本内高 IC 决定去留。", "对相关候选进行联合回归和残差 IC 检验，区分重复暴露与独立增量；研究结论登记为保留、观察或否决，失败假设同样留档。"] },
+  { code: "02", label: "POINT-IN-TIME DATA", title: "PIT 数据与仿真基础设施", scope: "约 131 GB 财报与分析师数据 · Tushare / JY · Dolphin / PySim", points: ["按公告日和实际可得日重建历史数据截面，避免修订值或未来信息进入回测；统一 Tushare 与聚源 JY 的字段映射，策略侧不因数据源切换而改写。", "实现 Dolphin 原生 PIT 财报加载，将时点对齐移入数据加载层；配套共享缓存、批量仿真和 IC 对账，缩短从因子定义到全量验证的路径。", "将字段数、非空、未来日期、行数对账、上游一致性和数据新鲜度做成配置化检查，并接入每日更新与异常报告。"] },
+  { code: "03", label: "SYSTEMATIC BETA", title: "市场 Beta 因子研究", scope: "多周期信号 · 非重叠相位 · 因子准入与部署判断", points: ["针对重叠收益容易夸大显著性的问题，使用非重叠相位、逐年一致性和环移空检验评估信号稳定性。", "通过联合回归、残差 IC 和共线性检查识别同一风险暴露的重复表达；只有在既有因子之外仍有边际解释力的信号才进入合成。", "研究记录保留证伪过程和方法修正。即使统计结果过关，若经济价值、实时数据或生产条件不足，也给出“暂不部署”的结论。"] },
+  { code: "04", label: "MACRO & ALLOCATION", title: "宏观状态与多资产配置", scope: "35 项宏观/市场指标 · 月频状态模型 · 46 组稳健性检验", points: ["以货币、信用、增长、通胀和市场确认信号刻画 A 股宏观状态，并将状态判断映射到股票、债券、商品与黄金的候选配置。", "回测严格区分设计期与样本外观察期，纳入信号发布滞后、执行时点、交易成本、基准组合和关键市场阶段，避免把不可交易的信息写进历史表现。", "完成参数扰动、分时期检验、确定性复跑和 PIT 历史快照审计；交付信号表、状态时间线、持仓、风险指标与审计记录，可由同一流程重复生成。"] },
 ];
 
 const projects = [
@@ -121,12 +122,12 @@ export default function Home() {
           </section>
 
           <section className="paper-section quant-workflow-section">
-            <AcademicHeading id="quant-workflow" mark="QW" title="Quant Research Workflow" subtitle="Alpha 与宏观研究架构" />
-            <p className="workflow-intro">这段实习以 Alpha 研究为核心、PIT 数据工程为底座，并延伸至宏观择时；三个工作流共享统一的时点约束、验证标准和审计记录。</p>
-            <div className="quant-work-grid">{quantWorkstreams.map((item) => <article key={item.code}><div className="quant-index"><span>{item.code}</span><strong>{item.metric}</strong><small>{item.label}</small></div><div className="quant-copy"><h3>{item.title}</h3><p>{item.body}</p></div></article>)}</div>
-            <p className="micro-title workflow-map-title">SYSTEM MAP / RESEARCH HANDOFF</p>
+            <AcademicHeading id="quant-workflow" mark="QR" title="Quantitative Research" subtitle="大寒智能量化 · 2025.11—至今" />
+            <p className="workflow-intro">在实习中负责 A 股横截面 Alpha、point-in-time 数据工程、市场 Beta 因子和宏观配置。所有研究都以当时可见数据生成信号，并保留样本外检验、复跑和审计记录。以下只写可公开的方法与工程范围，不披露公司策略公式和组合参数。</p>
+            <div className="quant-work-grid">{quantWorkstreams.map((item) => <article key={item.code}><div className="quant-index"><span>{item.code}</span><small>{item.label}</small></div><div className="quant-copy"><h3>{item.title}</h3><p className="quant-scope">{item.scope}</p><ul>{item.points.map((point) => <li key={point}>{point}</li>)}</ul></div></article>)}</div>
+            <p className="micro-title workflow-map-title">RESEARCH SYSTEM / DATA, EVIDENCE &amp; HANDOFF</p>
             <figure className="quant-figure">
-              <div className="quant-figure-scroll"><img src="/quant-research-architecture.svg" alt="大寒智能量化实习中的 Alpha 因子、PIT 数据、宏观择时与研究审计流程图" /></div>
+              <div className="quant-figure-scroll"><img src="/quant-research-architecture.svg" alt="大寒智能量化实习中的 Alpha、PIT 数据、市场 Beta、宏观配置与研究审计流程图" /></div>
               <figcaption><span>Hand-drawn research architecture · editable SVG</span><a href="/quant-research-architecture.svg" target="_blank" rel="noreferrer">打开原图 <External /></a></figcaption>
             </figure>
           </section>
@@ -149,7 +150,7 @@ export default function Home() {
         </div>
       </div>
 
-      <footer className="academic-footer"><span>© 2026 GeFei Jia · Academic Profile v0.6</span><span>Last updated: September 2026</span></footer>
+      <footer className="academic-footer"><span>© 2026 GeFei Jia · Academic Profile v0.7</span><span>Last updated: September 2026</span></footer>
     </main>
   );
 }
