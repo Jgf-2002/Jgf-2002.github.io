@@ -44,16 +44,15 @@ const education = [
 ];
 
 const experience = [
-  { date: "2025.11 — 至今", org: "大寒智能量化公司", role: "量化研发实习生 · Alpha Research / Quant Infrastructure", points: ["负责 A 股基本面与分析师预期 Alpha 研究：整理 253 个因子定义，完成 178 个 Dolphin / PySim 可运行实现，并维护日频横截面 IC、RankIC 与覆盖率监控。", "重做基本面和分析师数据的 point-in-time 链路；按公告日与可得日还原历史截面，并为 Tushare、聚源 JY 建立统一字段口径和生产质量检查。", "开展市场 Beta 因子与宏观配置研究。因子必须经过样本外、逐年稳定性、空检验、共线性与残差增量检验；证据不足的结果明确否决或暂缓部署。"] },
+  { date: "2025.11 — 至今", org: "大寒智能量化公司", role: "量化研究实习生 · Alpha / Beta Research", points: ["研究 A 股 20 日尺度市场 Beta 的可预测性。结果显示，主要信息来自市场所处的价格与回撤状态；控制这一状态后，传统估值信号不再提供独立增量。", "检验动量、流动性和技术形态等候选解释：简单动量和“顶底形态预示方向”的假设未成立，趋势一致性、订单簿持续性及形态出现频率则保留了部分增量信息。", "完成月频宏观状态与多资产配置研究。黄金和长债的候选信号较为稳定，股票信号需要宽信用确认；模型因此定位为风险覆盖层，而非独立择时策略。", "基本面与分析师预期类横截面 Alpha 仍在统一 PIT 口径下评估，尚未形成可公开的最终结论。"] },
   { date: "2024.11 — 2025.04", org: "东软集团", role: "大模型评测实习生 · 项目负责人", points: ["负责基于大模型的周期信息抓取项目。", "以 Selenium、浏览器截图和 EasyOCR 应对反爬并提取文本。", "结合讯飞星火语义切分、DeepSeek RAG、飞书多维表格与 Coze 自动化工作流。"] },
   { date: "2023.12 — 2024.01", org: "纵存科技 · SAS 验证部", role: "测试实习生", points: ["参与 SAS IP 中 SATA 协议状态机验证，覆盖协议规范、操作场景与边界条件。", "完善 UVM 验证仿真环境，设计测试激励并完成 IP 功能验证。"] },
 ];
 
-const quantWorkstreams = [
-  { code: "01", label: "CROSS-SECTIONAL ALPHA", title: "A 股横截面 Alpha 研究", scope: "253 个统一因子定义 · 178 个可运行实现 · 日频研究监控", points: ["将价值、质量、成长、现金流、营运效率和分析师预期等因子整理为统一定义，并接入 Dolphin / PySim 批量计算。", "每日跟踪全市场 IC、RankIC、覆盖率和跨年度稳定性。候选因子还需通过滚动样本外、环移空检验、机制诊断与消融实验，不以一次样本内高 IC 决定去留。", "对相关候选进行联合回归和残差 IC 检验，区分重复暴露与独立增量；研究结论登记为保留、观察或否决，失败假设同样留档。"] },
-  { code: "02", label: "POINT-IN-TIME DATA", title: "PIT 数据与仿真基础设施", scope: "约 131 GB 财报与分析师数据 · Tushare / JY · Dolphin / PySim", points: ["按公告日和实际可得日重建历史数据截面，避免修订值或未来信息进入回测；统一 Tushare 与聚源 JY 的字段映射，策略侧不因数据源切换而改写。", "实现 Dolphin 原生 PIT 财报加载，将时点对齐移入数据加载层；配套共享缓存、批量仿真和 IC 对账，缩短从因子定义到全量验证的路径。", "将字段数、非空、未来日期、行数对账、上游一致性和数据新鲜度做成配置化检查，并接入每日更新与异常报告。"] },
-  { code: "03", label: "SYSTEMATIC BETA", title: "市场 Beta 因子研究", scope: "多周期信号 · 非重叠相位 · 因子准入与部署判断", points: ["针对重叠收益容易夸大显著性的问题，使用非重叠相位、逐年一致性和环移空检验评估信号稳定性。", "通过联合回归、残差 IC 和共线性检查识别同一风险暴露的重复表达；只有在既有因子之外仍有边际解释力的信号才进入合成。", "研究记录保留证伪过程和方法修正。即使统计结果过关，若经济价值、实时数据或生产条件不足，也给出“暂不部署”的结论。"] },
-  { code: "04", label: "MACRO & ALLOCATION", title: "宏观状态与多资产配置", scope: "35 项宏观/市场指标 · 月频状态模型 · 46 组稳健性检验", points: ["以货币、信用、增长、通胀和市场确认信号刻画 A 股宏观状态，并将状态判断映射到股票、债券、商品与黄金的候选配置。", "回测严格区分设计期与样本外观察期，纳入信号发布滞后、执行时点、交易成本、基准组合和关键市场阶段，避免把不可交易的信息写进历史表现。", "完成参数扰动、分时期检验、确定性复跑和 PIT 历史快照审计；交付信号表、状态时间线、持仓、风险指标与审计记录，可由同一流程重复生成。"] },
+const quantStudies = [
+  { code: "01", label: "MARKET BETA", title: "中期市场 Beta 由什么驱动？", question: "在 20 个交易日的持有期上，价格状态、估值和微观结构信息，谁真正具有稳定的前瞻解释力？", finding: "主要信息来自市场所处的价格与回撤状态。估值信号单独看似有效，但在控制价格状态后失去独立解释力；订单簿持续性和部分流动性特征仍保留边际信息。", decision: "以价格状态作为基准因子，只吸收通过残差检验的微观结构增量。简单等权合成比滚动 IC 加权更稳定，因此没有采用更复杂的拟合权重。", evidence: "非重叠相位 · 逐年稳定性 · 环移 null · 联合回归 · 残差 IC" },
+  { code: "02", label: "HYPOTHESIS TESTING", title: "常见择时假设经得住检验吗？", question: "中期动量、顶底形态和趋势强度是否能够预测下一阶段市场方向，还是只是价格状态的另一种表达？", finding: "简单中期动量没有通过空检验；“顶分型预示下跌、底分型预示上涨”的方向假设也未成立。真正留下信息的是趋势的一致性，以及形态在一段时间内出现的频率。", decision: "淘汰没有独立增量的动量和形态方向因子，保留趋势一致性与事件频率作为候选信号。证伪结果进入研究注册表，避免以后换参数重复挖掘同一假设。", evidence: "空检验 · 跨年度复核 · 共线性检查 · 失败假设登记" },
+  { code: "03", label: "MACRO ALLOCATION", title: "宏观慢变量能否指导资产配置？", question: "货币、信用、增长和通胀状态，能否在真实发布时间约束下解释 A 股、债券、商品与黄金的相对机会？", finding: "模型更擅长在状态恶化时减少大幅失误，而不是捕捉每一次上涨。黄金和长债的候选信号较稳定；股票信号需要宽信用确认，对缺少基本面配合的流动性牛市存在明确盲区。", decision: "将模型定位为月频风险覆盖层，用于状态识别和候选资产排序，不作为独立的满仓择时策略；盲区与不适用阶段在报告中单独保留。", evidence: "设计期 / 样本外 · 执行滞后与成本 · 历史压力阶段 · PIT 快照审计" },
 ];
 
 const projects = [
@@ -122,14 +121,17 @@ export default function Home() {
           </section>
 
           <section className="paper-section quant-workflow-section">
-            <AcademicHeading id="quant-workflow" mark="QR" title="Quantitative Research" subtitle="大寒智能量化 · 2025.11—至今" />
-            <p className="workflow-intro">在实习中负责 A 股横截面 Alpha、point-in-time 数据工程、市场 Beta 因子和宏观配置。所有研究都以当时可见数据生成信号，并保留样本外检验、复跑和审计记录。以下只写可公开的方法与工程范围，不披露公司策略公式和组合参数。</p>
-            <div className="quant-work-grid">{quantWorkstreams.map((item) => <article key={item.code}><div className="quant-index"><span>{item.code}</span><small>{item.label}</small></div><div className="quant-copy"><h3>{item.title}</h3><p className="quant-scope">{item.scope}</p><ul>{item.points.map((point) => <li key={point}>{point}</li>)}</ul></div></article>)}</div>
-            <p className="micro-title workflow-map-title">RESEARCH SYSTEM / DATA, EVIDENCE &amp; HANDOFF</p>
-            <figure className="quant-figure">
-              <div className="quant-figure-scroll"><img src="/quant-research-architecture.svg" alt="大寒智能量化实习中的 Alpha、PIT 数据、市场 Beta、宏观配置与研究审计流程图" /></div>
-              <figcaption><span>Hand-drawn research architecture · editable SVG</span><a href="/quant-research-architecture.svg" target="_blank" rel="noreferrer">打开原图 <External /></a></figcaption>
-            </figure>
+            <AcademicHeading id="quant-workflow" mark="QR" title="Selected Quantitative Research" subtitle="大寒智能量化 · 2025.11—至今" />
+            <p className="workflow-intro">以下只保留已经形成判断的研究。每项分别说明研究问题、得到的结论，以及结论如何影响因子保留或策略定位；公司策略公式和组合参数不公开。</p>
+            <div className="quant-study-list">{quantStudies.map((item) => <article className="quant-study" key={item.code}><header><span>{item.code}</span><div><small>{item.label}</small><h3>{item.title}</h3></div></header><dl><div><dt>问题</dt><dd>{item.question}</dd></div><div><dt>发现</dt><dd>{item.finding}</dd></div><div><dt>研究决策</dt><dd>{item.decision}</dd></div></dl><p className="study-evidence">验证：{item.evidence}</p></article>)}</div>
+            <aside className="alpha-progress"><b>ONGOING · CROSS-SECTIONAL ALPHA</b><h3>基本面与分析师预期 Alpha</h3><p>正在回答的问题是：价值、质量、成长、现金流和分析师预期因子，在统一的 point-in-time 口径下，哪些仍具有独立的横截面解释力？目前尚未形成可公开的最终结论，因此不在此页声明超额收益。</p></aside>
+            <details className="method-details">
+              <summary>研究数据与验证体系</summary>
+              <figure className="quant-figure">
+                <div className="quant-figure-scroll"><img src="/quant-research-architecture.svg" alt="大寒智能量化实习中的 Alpha、PIT 数据、市场 Beta、宏观配置与研究审计流程图" /></div>
+                <figcaption><span>Point-in-time data · falsification · reproducible handoff</span><a href="/quant-research-architecture.svg" target="_blank" rel="noreferrer">打开原图 <External /></a></figcaption>
+              </figure>
+            </details>
           </section>
 
           <section className="paper-section">
@@ -150,7 +152,7 @@ export default function Home() {
         </div>
       </div>
 
-      <footer className="academic-footer"><span>© 2026 GeFei Jia · Academic Profile v0.7</span><span>Last updated: September 2026</span></footer>
+      <footer className="academic-footer"><span>© 2026 GeFei Jia · Academic Profile v0.8</span><span>Last updated: September 2026</span></footer>
     </main>
   );
 }
