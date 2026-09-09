@@ -12,13 +12,13 @@ export const metadata: Metadata = {
     url: "https://jgf-2002.github.io/",
     title: "贾格非 | 个人学术主页",
     description: "博弈论、随机过程、滤波控制与量化研究。",
-    images: [{ url: "/og.png", alt: "贾格非个人学术主页" }],
+    images: [{ url: "/profile.jpg", alt: "贾格非" }],
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title: "贾格非 | 个人学术主页",
     description: "博弈论、随机过程、滤波控制与量化研究。",
-    images: ["/og.png"],
+    images: ["/profile.jpg"],
   },
 };
 
