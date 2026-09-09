@@ -1,4 +1,4 @@
-/* eslint-disable @next/next/no-img-element, @next/next/no-html-link-for-pages */
+/* eslint-disable @next/next/no-html-link-for-pages */
 
 import type { Metadata } from "next";
 
@@ -50,8 +50,8 @@ export default function InternshipPage() {
           <nav aria-label="成果页导航">
             <a href="#work">研究工作</a>
             <a href="#rerun">复跑记录</a>
-            <a href="#audit">审计摘要</a>
-            <a href="#diagram">工作图</a>
+            <a href="#audit">宏观审计</a>
+            <a href="#materials">附件</a>
           </nav>
           <a className="github-link" href="/">返回主页</a>
         </div>
@@ -75,72 +75,71 @@ export default function InternshipPage() {
 
         <div className="result-content">
           <header className="result-intro">
-            <p className="eyebrow">实习工作与公开核验记录</p>
-            <h2>量化研究实习｜公开工作记录</h2>
+            <h2>量化研究实习</h2>
+            <p className="result-byline">大寒智能量化公司 · 量化研究实习生 · 2025.11 — 至今</p>
             <p>本页记录我在实习中承担的研究工作，并附上 2026 年 9 月 9 日在远端研究环境中的复跑结果。为遵守公司保密要求，策略公式、组合权重、信号值、IC / RankIC 数值和证券明细均未公开。</p>
           </header>
 
           <section className="result-section" id="work">
-            <header className="result-section-heading"><h2>研究工作</h2><span>WORK</span></header>
-            <div className="work-list">
-              {work.map((item, index) => (
-                <article key={item.title}>
-                  <span>{String(index + 1).padStart(2, "0")}</span>
-                  <div><h3>{item.title}</h3><p>{item.body}</p></div>
-                </article>
+            <header className="result-section-heading"><h2>主要工作</h2></header>
+            <ul className="responsibility-list">
+              {work.map((item) => (
+                <li key={item.title}><strong>{item.title}</strong><p>{item.body}</p></li>
               ))}
-            </div>
+            </ul>
           </section>
 
           <section className="result-section" id="rerun">
-            <header className="result-section-heading"><h2>脚本复跑记录</h2><span>RERUN</span></header>
-            <p className="result-section-intro">三项任务均在远端研究环境完成，退出状态为 0。两组 Beta 测试共 22 项，全部通过。</p>
-            <div className="table-wrap">
-              <table className="result-table">
-                <thead><tr><th>任务</th><th>公开结果</th><th>耗时</th></tr></thead>
-                <tbody>
-                  <tr>
-                    <td><strong>Alpha 日报生成</strong><small>实际研究数据 · 数据日 2026.09.08</small></td>
-                    <td>4,169 / 4,300 个样本；覆盖率 96.95%；生成 5、10、20 日三个观察期报告</td>
-                    <td>成功完成</td>
-                  </tr>
-                  <tr>
-                    <td><strong>市场 Beta 合成测试 A</strong><small>合成数据 · 确定性单元测试</small></td>
-                    <td>10 / 10 通过</td><td>0.878 s</td>
-                  </tr>
-                  <tr>
-                    <td><strong>市场 Beta 合成测试 B</strong><small>合成数据 · 确定性单元测试</small></td>
-                    <td>12 / 12 通过</td><td>0.272 s</td>
-                  </tr>
-                </tbody>
-              </table>
+            <header className="result-section-heading"><h2>复跑记录</h2></header>
+            <p className="result-section-intro">以下任务于 2026 年 9 月 9 日在远端研究环境执行，均正常结束。</p>
+            <div className="research-records">
+              <article>
+                <time>2026.09.09</time>
+                <div>
+                  <h3>Alpha 因子日报</h3>
+                  <p>使用 2026 年 9 月 8 日的实际研究数据重新生成日报。全市场范围为 4,300 个样本，其中 4,169 个进入计算，覆盖率为 96.95%；同时生成 5、10 和 20 日三个观察期的报告。</p>
+                  <p className="record-note">运行完成 · 退出状态 0 · 收益与 IC 数值未公开</p>
+                </div>
+              </article>
+              <article>
+                <time>2026.09.09</time>
+                <div>
+                  <h3>市场 Beta 合成规则测试</h3>
+                  <p>在合成数据上复跑两组确定性测试：因子合成测试 10 / 10 通过，耗时 0.878 秒；方向与因果约束测试 12 / 12 通过，耗时 0.272 秒。</p>
+                  <p className="record-note">共 22 项测试 · 覆盖未来数据隔离、单日滞后、滚动边界、空检验、正交残差和原子化输出</p>
+                </div>
+              </article>
             </div>
-            <p className="method-note">测试覆盖：未来数据隔离、单日滞后、滚动边界、环移空检验、正交残差、预注册规则冻结、候选信号隔离及原子化输出。</p>
           </section>
 
           <section className="result-section" id="audit">
-            <header className="result-section-heading"><h2>宏观研究审计摘要</h2><span>AUDIT</span></header>
-            <p className="result-section-intro">以下数据来自已有审计产物，本次仅做只读核验，没有覆盖生产输出。</p>
-            <dl className="audit-list">
-              <div><dt>PIT 时点抽查</dt><dd><strong>72 / 72</strong><span>未发现提前读取</span></dd></div>
-              <div><dt>确定性复跑</dt><dd><strong>一致</strong><span>相同输入得到相同结果</span></dd></div>
-              <div><dt>参数敏感性</dt><dd><strong>46</strong><span>组变体</span></dd></div>
-              <div><dt>状态时间线</dt><dd><strong>26</strong><span>个连续阶段</span></dd></div>
-              <div><dt>历史压力检查</dt><dd><strong>4 / 6</strong><span>通过</span></dd></div>
-            </dl>
-            <div className="limitation-note">
-              <h3>保留的失败案例</h3>
-              <p>2015 年市场异常波动与 2018 年去杠杆阶段未通过预设检查，分别出现状态恢复判断偏早和状态分类偏差。这两段没有从报告中删除，而是作为模型适用边界继续保留。</p>
+            <header className="result-section-heading"><h2>宏观配置审计</h2></header>
+            <p className="result-section-intro">本次读取已有审计产物进行核对，没有改写生产输出。</p>
+            <div className="research-records">
+              <article>
+                <time>PIT</time>
+                <div><h3>时点与确定性检查</h3><p>72 项历史时点抽查全部通过，未发现提前读取；使用相同输入进行两次复跑，输出一致。</p></div>
+              </article>
+              <article>
+                <time>敏感性</time>
+                <div><h3>参数与状态时间线</h3><p>审计产物包含 46 组参数敏感性变体和 26 个连续状态阶段，用于检查结论是否依赖单一参数以及状态切换是否连贯。</p></div>
+              </article>
+              <article>
+                <time>压力阶段</time>
+                <div>
+                  <h3>六个历史阶段中四个通过</h3>
+                  <p>2020 年疫情冲击、2020 年下半年修复、2021—2022 年下行和 2024 年 9 月市场反转通过预设检查。2015 年市场异常波动与 2018 年去杠杆阶段未通过，分别出现恢复判断偏早和状态分类偏差；这两段作为模型适用边界保留。</p>
+                </div>
+              </article>
             </div>
           </section>
 
-          <section className="result-section" id="diagram">
-            <header className="result-section-heading"><h2>工作结构图</h2><span>MAP</span></header>
-            <p className="result-section-intro">用于说明四类工作的衔接关系；具体策略参数不在图中展示。</p>
-            <figure className="result-figure">
-              <div><img src="/quant-research-architecture.svg" alt="量化研究实习工作结构图" /></div>
-              <figcaption><span>量化研究实习工作结构图</span><a href="/quant-research-architecture.svg" target="_blank" rel="noreferrer">单独查看 <External /></a></figcaption>
-            </figure>
+          <section className="result-section" id="materials">
+            <header className="result-section-heading"><h2>附件</h2></header>
+            <ul className="attachment-list">
+              <li><a href="/results/remote-validation-2026-09-09.json" target="_blank" rel="noreferrer">远端复跑结果（JSON） <External /></a><p>本页复跑数据的机器可读版本，已移除服务器、路径和策略敏感信息。</p></li>
+              <li><a href="/quant-research-architecture.svg" target="_blank" rel="noreferrer">实习工作结构图 <External /></a><p>说明 Alpha、市场 Beta、宏观配置和 PIT 数据工程之间的工作关系。</p></li>
+            </ul>
           </section>
 
           <p className="result-disclosure">复跑结果只证明相应程序在所述环境和数据口径下完成，并不构成投资建议，也不代表未来收益。</p>
