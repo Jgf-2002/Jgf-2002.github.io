@@ -28,6 +28,59 @@
       "elapsed_seconds": 0.272
     }
   ],
+  "beta_research_scope": {
+    "holding_period_days": 20,
+    "candidate_constructions_reviewed": "more than 790",
+    "non_overlapping_phases": 20,
+    "methods": [
+      "annual stability review",
+      "circular-shift null test",
+      "joint regression",
+      "residual IC"
+    ],
+    "status": "research confirmed, not deployed"
+  },
+  "dolphin_pit_loader_validation": {
+    "scope": "all trading days and equities in 2022",
+    "future_data_violations": 0,
+    "field_coverage_percent_approx": 89,
+    "merge_mismatch_percent_range": [0.001, 0.003],
+    "legacy_mode_byte_identical": true,
+    "pysim_end_to_end_completed": true
+  },
+  "jy_financial_pit_integrity": {
+    "status": "completed",
+    "exit_code": 0,
+    "tables_checked": 22,
+    "pit_files_expected": 97105,
+    "pit_files_present": 97105,
+    "visible_rows_expected": 145171459,
+    "future_rows_excluded": 1826,
+    "future_rows_in_pit": 0,
+    "missing_files": 0,
+    "unexpected_files": 0,
+    "content_mismatches": 0,
+    "row_count_mismatches": 0,
+    "header_mismatches": 0,
+    "errors": 0
+  },
+  "tushare_daily_pipeline_tests": {
+    "status": "passed",
+    "tests_passed": 26,
+    "tests_total": 26,
+    "elapsed_seconds": 0.5,
+    "environment": "temporary directories and mocks; no production writes or live network calls",
+    "coverage": [
+      "pagination beyond 6000 rows",
+      "short-payload rejection",
+      "trading-date resolution",
+      "pending repair lifecycle",
+      "closeout audit",
+      "concurrency locks",
+      "atomic writes",
+      "dry-run isolation"
+    ]
+  },
   "macro_audit_snapshot": {
     "mode": "read-only inspection of existing audit output",
     "pit_spotchecks_passed": 72,

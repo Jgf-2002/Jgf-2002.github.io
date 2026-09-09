@@ -21,8 +21,8 @@
   <g filter="url(#paperNoise)">
     <rect x="792" y="20" width="374" height="48" rx="12" fill="#f5f0df" stroke="#d5c18d"/>
   </g>
-  <text x="812" y="40" class="tiny muted">253 Factor Specs · 178 Real Implementations</text>
-  <text x="812" y="57" class="tiny muted">131 GB PIT · Daily IC / RankIC · OOS Audit</text>
+  <text x="812" y="40" class="tiny muted">253 Factor Specs · 178 Implementations · 790+ Beta Candidates</text>
+  <text x="812" y="57" class="tiny muted">131 GB Research Data · 145M PIT Rows · 48 Tests Passed</text>
 
   <!-- DATA PLANE -->
   <rect x="25" y="88" width="1150" height="180" rx="18" class="lane" stroke="#8eb6d9"/>
@@ -34,7 +34,7 @@
     <text x="17" y="25" class="node-code">N0 / SOURCE</text>
     <text x="17" y="52" class="node-title">多源金融数据</text>
     <text x="17" y="75" class="node-note">Tushare · 聚源 JY · 行情</text>
-    <text x="17" y="92" class="tiny muted">财务 / 分析师 / 市场数据</text>
+    <text x="17" y="92" class="tiny muted">财务 / 分析师 / 多资产数据</text>
   </g>
   <g transform="translate(335 135)">
     <rect width="230" height="100" rx="13" class="node purple-fill"/>
@@ -47,8 +47,8 @@
     <rect width="230" height="100" rx="13" class="node gold-fill"/>
     <text x="17" y="25" class="node-code">N2 / QUALITY</text>
     <text x="17" y="52" class="node-title">质量与版本控制</text>
-    <text x="17" y="75" class="node-note">schema · null · freshness</text>
-    <text x="17" y="92" class="tiny muted">upstream check · no empty output</text>
+    <text x="17" y="75" class="node-note">schema · freshness · atomic</text>
+    <text x="17" y="92" class="tiny muted">quality audit · repair ledger</text>
   </g>
   <g transform="translate(895 135)">
     <rect width="230" height="100" rx="13" class="node green-fill"/>
