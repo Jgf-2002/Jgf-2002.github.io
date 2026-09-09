@@ -44,18 +44,21 @@ const education = [
 ];
 
 const experience = [
-  { date: "2025.11 — 至今", org: "大寒智能量化公司", role: "量化研发实习生 · Alpha 研究与量化基础设施", points: ["构建 Alpha 因子研究与生产链路，覆盖价值、质量、成长、现金流、营运效率和分析师预期等因子族；围绕 253 项因子规范完成批量代码生成，形成 178 项可运行实现。", "搭建百 GB 级基本面与分析师 PIT 数据投影、Dolphin 共享内存缓存和 PySim 批量信号验证链路，严格按信息可见日控制回测数据。", "建立因子评价与研究治理框架：持续跟踪 IC / RankIC 与覆盖率，并采用预注册、滚动样本外检验、置换空检验、跨年份稳定性、机制诊断和消融分析筛选候选信号。", "建设并维护 Tushare、聚源 JY 等多源金融数据日更链路和配置驱动的数据质量检查，覆盖完整性、非空、未来日期、上游一致性、行数与新鲜度。", "并行开展 A 股宏观择时与多资产配置研究，形成月频 PIT 面板、信号构建、回测、敏感性分析和审计闭环。"] },
+  { date: "2025.11 — 至今", org: "大寒智能量化公司", role: "量化研发实习生 · Alpha 研究与量化基础设施", points: ["围绕价值、质量、成长、现金流、营运效率与分析师预期等因子族，搭建从研究假设、批量生成到评估晋级的 Alpha 研究链路。", "整理 253 项因子规范并完成自动化代码生成，其中 178 项形成可运行实现；持续监控 IC / RankIC、覆盖率及跨年度稳定性。", "构建 131 GB 基本面与分析师 PIT 数据、Dolphin 共享内存缓存及 PySim 批量验证链路，并通过配置化质量检查控制数据完整性与时点可见性。", "建立预注册、滚动样本外、置换空检验、机制诊断和消融实验组成的研究证据链；并行完成 A 股宏观择时与多资产配置研究交付。"] },
   { date: "2024.11 — 2025.04", org: "东软集团", role: "大模型评测实习生 · 项目负责人", points: ["负责基于大模型的周期信息抓取项目。", "以 Selenium、浏览器截图和 EasyOCR 应对反爬并提取文本。", "结合讯飞星火语义切分、DeepSeek RAG、飞书多维表格与 Coze 自动化工作流。"] },
-  { date: "2023.12 — 2024.01", org: "宗村科技 · SAS 验证部", role: "测试实习生", points: ["参与 SAS / SATA 状态机验证。", "搭建 UVM 仿真环境，设计测试激励并完成 IP 功能验证。"] },
+  { date: "2023.12 — 2024.01", org: "纵存科技 · SAS 验证部", role: "测试实习生", points: ["参与 SAS IP 中 SATA 协议状态机验证，覆盖协议规范、操作场景与边界条件。", "完善 UVM 验证仿真环境，设计测试激励并完成 IP 功能验证。"] },
+];
+
+const quantWorkstreams = [
+  { code: "ALPHA", metric: "253 / 178", label: "规范 / 可运行实现", title: "Alpha 因子研究", body: "覆盖价值、质量、成长、现金流、营运效率及分析师预期等因子族；以全市场日频 IC / RankIC、滚动样本外、空检验、机制诊断与消融实验筛选候选信号。" },
+  { code: "DATA", metric: "131 GB", label: "PIT 研究数据", title: "量化数据基础设施", body: "打通 Tushare、聚源 JY 到 PIT 投影、质量检查、Dolphin 共享缓存和 PySim 批量验证的研究消费链路，控制未来信息泄漏。" },
+  { code: "MACRO", metric: "46×", label: "敏感性变体", title: "宏观择时与配置", body: "构建月频宏观 PIT 面板与多资产信号体系，通过回测、参数敏感性、确定性复跑和历史时点审计形成可复现研究交付。" },
 ];
 
 const projects = [
-  { no: "01", title: "Alpha 因子研究与评估体系", meta: "大寒智能量化公司 · 2025.11—至今", body: "围绕价值、质量、成长、现金流、营运效率与分析师预期建立多因子生产体系；以日频 IC / RankIC、覆盖率、滚动样本外表现、置换空检验、跨年份稳定性、机制诊断与消融实验构成证据链，并以通过、观察、淘汰三级状态管理候选信号。", result: "253 Factor Specs · 178 Implementations · OOS / Null / Ablation" },
-  { no: "02", title: "PIT 量化数据与研究基础设施", meta: "大寒智能量化公司 · 2025.11—至今", body: "将 Tushare、聚源 JY 的财务、行情和分析师数据转化为回测时点真实可见的 PIT 数据集，构建百 GB 级投影、共享内存缓存、批量信号生成及数据质量监控链路，为 Alpha 研究和策略回测提供统一底座。", result: "PIT Data · Dolphin / PySim · Quality Monitoring" },
-  { no: "03", title: "A 股宏观择时与多资产配置", meta: "大寒智能量化公司 · 研究交付", body: "构建月频宏观 PIT 面板与多资产信号体系，完成数据接入、状态识别、回测、参数敏感性分析及确定性 / 历史时点审计，形成可复现的研究交付闭环。", result: "Macro Signals · Backtest · Sensitivity · PIT Audit" },
-  { no: "04", title: "同轴电缆长度与负载检测装置", meta: "全国大学生电子设计竞赛 · 核心成员 · 2022.06—2023.04", body: "3 天内完成基于时域反射与阻抗测量的检测装置；长度误差小于 0.5%，负载识别准确率 93%。", result: "全国二等奖 · 辽宁赛区该赛道最高奖" },
-  { no: "05", title: "生产物流智能优化", meta: "科研负责人 · 2024.03—2024.06", body: "研究分时电价下的分布式柔性作业车间调度，以能耗和最大完工时间为多目标，设计三级编码、自适应遗传算法并扩展 NSGA-II 目标。", result: "Multi-objective scheduling · Energy / Makespan" },
-  { no: "06", title: "JPX 东京股票收益预测", meta: "Kaggle 金牌方案复现 · 2025.09", body: "基于约 2,000 只日本股票构造复权、窗口统计、波动率、K 线、交易日及监管特征；按行业训练 LightGBM 模型。", result: "线上评分 0.41 · 超过公开榜单第一名方案" },
+  { no: "01", title: "同轴电缆长度与负载检测装置", meta: "全国大学生电子设计竞赛 · 核心成员 · 2022.06—2023.04", body: "3 天内完成基于时域反射与阻抗测量的检测装置；建立同轴电缆阻抗模型，以时域反射法测量长度、等效阻抗法识别负载。", result: "长度误差 < 0.5% · 负载准确率 93% · 全国二等奖" },
+  { no: "02", title: "制造与物流场景下的智能优化算法设计", meta: "科研训练负责人 · 2024.03—2024.06", body: "面向分时电价下的分布式柔性作业车间调度，对工序、生产与运输进行三级编码，采用自适应遗传算法并扩展 NSGA-II 的多目标优化设计。", result: "Energy / Makespan · Adaptive GA · NSGA-II" },
+  { no: "03", title: "JPX 东京股票收益预测", meta: "Kaggle 金牌方案复现 · 2025.09", body: "基于约 2,000 只日本股票完成复权处理，并从滑动窗口、加权统计、波动率、K 线、交易日及监管数据中构造特征，按行业训练 LightGBM 模型。", result: "线上评分 0.41 · 超过公开榜首方案" },
 ];
 
 export default function Home() {
@@ -64,7 +67,7 @@ export default function Home() {
       <header className="topbar">
         <div className="topbar-inner">
           <a className="top-name" href="#about">贾格非</a>
-          <nav aria-label="学术主页导航"><a href="#about">BIOSKETCH</a><a href="#education">EDUCATION</a><a href="#experience">PROFESSIONAL</a><a href="#quant-workflow">QUANT</a><a href="#research">RESEARCH</a><a href="#honors">HONORS</a></nav>
+          <nav aria-label="学术主页导航"><a href="#about">PROFILE</a><a href="#education">EDUCATION</a><a href="#publications">OUTPUTS</a><a href="#experience">EXPERIENCE</a><a href="#quant-workflow">QUANT</a><a href="#research">PROJECTS</a></nav>
           <a className="portfolio-link" href="https://github.com/Jgf-2002" target="_blank" rel="noreferrer">GITHUB <External /></a>
         </div>
       </header>
@@ -93,18 +96,23 @@ export default function Home() {
         <div className="academic-content">
           <section className="paper-section biosketch">
             <AcademicHeading id="about" mark="BS" title="BioSketch" subtitle="个人学术简介" />
-            <div className="topic-pills"><a href="#research">Research Focus</a><a href="#education">Academic Background</a><a href="#experience">Industry Experience</a><a href="#honors">Honors & Awards</a></div>
+            <div className="topic-pills"><a href="#education">Academic Background</a><a href="#publications">Research Output</a><a href="#experience">Industry Experience</a><a href="#quant-workflow">Quant Research</a></div>
             <p className="micro-title">RESEARCH FOCUS</p>
-            <p className="lead-copy">贾格非现为中国科学技术大学电子信息专业硕士研究生，研究聚焦于<strong>基于博弈论的马尔可夫随机过程滤波与控制</strong>。他的学习与实践横跨控制理论、机器学习、智能优化、计算机视觉和量化研究。</p>
+            <p className="lead-copy">贾格非现为中国科学技术大学电子信息专业硕士研究生，研究聚焦于<strong>基于博弈论的马尔可夫随机过程滤波与控制</strong>，并将概率建模、机器学习和实验验证方法延伸至 Alpha 研究与量化系统工程。</p>
             <blockquote>如何把带有不确定性的真实问题，转化为可建模、可求解、可验证的决策系统？</blockquote>
-            <p className="body-copy">本科阶段，他围绕医学图像深度学习和变结构神经网络滑模控制开展研究，形成 1 篇 EI 会议论文与 1 篇中文核心期刊论文；工程实践覆盖 Alpha 因子研究、量化数据 PIT、宏观择时、大模型信息抓取、SAS / SATA 状态机验证、电子系统测量与多目标调度优化。</p>
-            <div className="evidence-row"><span><b>Control</b>状态估计与系统控制</span><span><b>AI</b>机器学习与优化算法</span><span><b>Quant</b>Alpha 因子 · PIT · 回测审计</span></div>
+            <p className="body-copy">他的研究路径从本科阶段的医学图像识别与变结构神经网络滑模控制出发，逐步拓展至电子系统测量、智能调度、大模型信息处理和量化研发；贯穿其中的是同一条方法主线：建立模型、构造数据、验证假设并保留可追溯证据。</p>
+            <div className="evidence-row"><span><b>Foundation</b>概率 · 博弈论 · 控制</span><span><b>Methods</b>机器学习 · 智能优化</span><span><b>Application</b>Alpha · PIT · 回测审计</span></div>
             <ResearchSketch />
           </section>
 
           <section className="paper-section">
             <AcademicHeading id="education" mark="ED" title="Education" subtitle="教育背景" />
             <div className="academic-list">{education.map((item) => <article className="academic-entry" key={item.school}><div className="entry-year">{item.date}</div><div><h3>{item.school}</h3><p className="entry-role">{item.degree}</p><p>{item.detail}</p><div className="tag-row">{item.tags.map((tag) => <span key={tag}>{tag}</span>)}</div></div></article>)}</div>
+          </section>
+
+          <section className="paper-section publication-section">
+            <AcademicHeading id="publications" mark="PB" title="Publications & Research Output" subtitle="论文与研究成果" />
+            <div className="publication-grid"><div><strong>01 · EI CONFERENCE</strong><h3>医学图像深度学习研究</h3><p>本科阶段围绕医学图像识别与深度学习方法形成的会议论文成果。</p><span>完整题名、作者顺序与链接待补充</span></div><div><strong>02 · CHINESE CORE</strong><h3>变结构神经网络与滑模控制</h3><p>围绕变结构神经网络和滑模控制方法形成的中文核心期刊成果。</p><span>完整题名、作者顺序与链接待补充</span></div></div>
           </section>
 
           <section className="paper-section">
@@ -114,7 +122,9 @@ export default function Home() {
 
           <section className="paper-section quant-workflow-section">
             <AcademicHeading id="quant-workflow" mark="QW" title="Quant Research Workflow" subtitle="Alpha 与宏观研究架构" />
-            <p className="workflow-intro">以时间点真实可见的数据为底座，将 Alpha 假设、因子生产、统计检验和宏观配置纳入同一套可追溯研究流程。</p>
+            <p className="workflow-intro">这段实习以 Alpha 研究为核心、PIT 数据工程为底座，并延伸至宏观择时；三个工作流共享统一的时点约束、验证标准和审计记录。</p>
+            <div className="quant-work-grid">{quantWorkstreams.map((item) => <article key={item.code}><div className="quant-card-top"><span>{item.code}</span><strong>{item.metric}</strong></div><p className="quant-metric-label">{item.label}</p><h3>{item.title}</h3><p>{item.body}</p></article>)}</div>
+            <p className="micro-title workflow-map-title">SYSTEM MAP / RESEARCH HANDOFF</p>
             <figure className="quant-figure">
               <div className="quant-figure-scroll"><img src="/quant-research-architecture.svg" alt="大寒智能量化实习中的 Alpha 因子、PIT 数据、宏观择时与研究审计流程图" /></div>
               <figcaption><span>Hand-drawn research architecture · editable SVG</span><a href="/quant-research-architecture.svg" target="_blank" rel="noreferrer">打开原图 <External /></a></figcaption>
@@ -122,13 +132,8 @@ export default function Home() {
           </section>
 
           <section className="paper-section">
-            <AcademicHeading id="research" mark="RW" title="Research & Selected Work" subtitle="研究与代表项目" />
+            <AcademicHeading id="research" mark="SW" title="Selected Projects" subtitle="科研竞赛与独立研究" />
             <div className="project-list">{projects.map((project) => <article className="research-entry" key={project.no}><span className="research-number">{project.no}</span><div><h3>{project.title}</h3><p className="project-meta">{project.meta}</p><p>{project.body}</p><div className="result-badge">{project.result}</div></div></article>)}</div>
-          </section>
-
-          <section className="paper-section publication-section">
-            <AcademicHeading id="publications" mark="PB" title="Publications & Research Output" subtitle="论文与研究成果" />
-            <div className="publication-grid"><div><strong>01</strong><h3>EI Conference Paper</h3><p>医学图像深度学习 / 变结构神经网络与滑模控制相关研究。</p><span>题名与链接待补充</span></div><div><strong>02</strong><h3>Chinese Core Journal Paper</h3><p>本科科研阶段形成的中文核心期刊论文成果。</p><span>题名与链接待补充</span></div></div>
           </section>
 
           <section className="paper-section">
@@ -144,7 +149,7 @@ export default function Home() {
         </div>
       </div>
 
-      <footer className="academic-footer"><span>© 2026 GeFei Jia · Academic Profile v0.3</span><span>Last updated: September 2026</span></footer>
+      <footer className="academic-footer"><span>© 2026 GeFei Jia · Academic Profile v0.4</span><span>Last updated: September 2026</span></footer>
     </main>
   );
 }

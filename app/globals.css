@@ -68,6 +68,17 @@ blockquote { margin: 22px 0; padding: 14px 18px; color: #334d6a; background: #f4
 .node-code { fill: #6a83a2; font-size: 8px; }.node-name { fill: #23344a; font-size: 15px; font-weight: 700; }.node-note { fill: #7a8491; font-size: 8px; font-style: italic; }.loop-label { fill: #b66c30; font-size: 9px; font-style: italic; }
 
 .workflow-intro { max-width: 670px; margin: -4px 0 21px; color: #5d6a78; font-size: 13px; line-height: 1.8; }
+.quant-work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 0 0 26px; }
+.quant-work-grid article { min-width: 0; padding: 17px 16px 18px; background: #fafbfc; border: 1px solid #dfe4ea; border-top: 3px solid #6d8fb1; border-radius: 4px; }
+.quant-work-grid article:nth-child(2) { border-top-color: #a17ac5; background: #fbfafe; }
+.quant-work-grid article:nth-child(3) { border-top-color: #b89549; background: #fdfbf6; }
+.quant-card-top { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.quant-card-top span { color: #718096; font: 700 9px Consolas, monospace; letter-spacing: .12em; }
+.quant-card-top strong { color: var(--navy); font: 700 20px Georgia, serif; white-space: nowrap; }
+.quant-metric-label { margin: 2px 0 14px !important; color: #8d96a1 !important; font-size: 9px !important; text-align: right; }
+.quant-work-grid h3 { margin: 0 0 8px; color: #223c59; font: 700 15px Georgia, "Songti SC", serif; }
+.quant-work-grid article > p:last-child { margin: 0; color: #687482; font-size: 10px; line-height: 1.7; }
+.workflow-map-title { margin: 0 0 9px; }
 .quant-figure { margin: 0; }
 .quant-figure-scroll { overflow-x: auto; padding: 10px; background: #fbfaf7; border: 1px solid #e3dfd5; border-radius: 6px; scrollbar-width: thin; scrollbar-color: #c8b175 #f2efe7; }
 .quant-figure img { width: 100%; min-width: 820px; height: auto; display: block; }
@@ -108,6 +119,6 @@ blockquote { margin: 22px 0; padding: 14px 18px; color: #334d6a; background: #f4
 }
 @media (max-width: 540px) {
   .topbar-inner, .academic-shell { width: min(100% - 24px, 1080px); }.topbar nav { gap: 20px; }.portfolio-link { display: none; }.academic-shell { gap: 14px; }.scholar-sidebar { display: block; }.identity-card { padding-block: 24px; }.sidebar-stats { display: none; }
-  .paper-section { padding: 22px 19px; }.academic-heading h2 { font-size: 21px; }.academic-entry { grid-template-columns: 1fr; gap: 7px; }.entry-year { color: var(--gold); }.publication-grid { grid-template-columns: 1fr; }.honor-list article { grid-template-columns: 70px 1fr; }.honor-list p { grid-column: 2; }.skills-section dl > div { grid-template-columns: 1fr; gap: 5px; }.academic-footer { align-items: flex-start; flex-direction: column; gap: 5px; }
+  .paper-section { padding: 22px 19px; }.academic-heading h2 { font-size: 21px; }.academic-entry { grid-template-columns: 1fr; gap: 7px; }.entry-year { color: var(--gold); }.publication-grid, .quant-work-grid { grid-template-columns: 1fr; }.honor-list article { grid-template-columns: 70px 1fr; }.honor-list p { grid-column: 2; }.skills-section dl > div { grid-template-columns: 1fr; gap: 5px; }.academic-footer { align-items: flex-start; flex-direction: column; gap: 5px; }
 }
 @media print { .topbar { position: static; }.academic-shell { width: 100%; margin: 0; grid-template-columns: 230px 1fr; gap: 15px; }.scholar-sidebar { position: static; box-shadow: none; }.paper-section { break-inside: avoid; box-shadow: none; }.academic-footer { display: none; } }
