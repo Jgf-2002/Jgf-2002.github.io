@@ -149,7 +149,7 @@ export default function Home() {
         </div>
       </div>
 
-      <footer className="academic-footer"><span>© 2026 GeFei Jia · Academic Profile v0.4</span><span>Last updated: September 2026</span></footer>
+      <footer className="academic-footer"><span>© 2026 GeFei Jia · Academic Profile v0.5</span><span>Last updated: September 2026</span></footer>
     </main>
   );
 }
