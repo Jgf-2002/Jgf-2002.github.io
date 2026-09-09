@@ -44,7 +44,7 @@ const education = [
 ];
 
 const experience = [
-  { date: "2025.11 — 至今", org: "大寒智能量化公司", role: "量化研究实习生 · Alpha 因子 / 市场 Beta / 资产配置", points: ["负责 A 股基本面与分析师预期 Alpha 因子研究，覆盖价值、质量、成长、现金流和营运效率等方向；整理 253 个因子定义，完成 178 个 Dolphin / PySim 可运行实现，并评估 IC、RankIC、覆盖率与跨年度稳定性。", "开展 A 股 20 日尺度市场 Beta 研究，系统检验价格状态、估值、动量、流动性、订单簿和技术形态等候选信号；使用非重叠相位、空检验、联合回归与残差 IC 筛选独立增量。", "完成 Beta 因子归因与合成，识别价格与回撤状态的基准解释力，并从订单簿持续性、趋势一致性和形态频率中筛选补充信号；剔除缺乏增量的估值、简单动量及形态方向因子。", "完成月频宏观状态与多资产配置研究，建立货币、信用、增长、通胀和市场确认指标体系，研究股票、债券、商品与黄金的配置关系；交付信号表、状态时间线、回测与敏感性分析报告。", "建设基本面与分析师数据的 point-in-time 研究链路，完成约 131 GB 历史数据、Dolphin PIT 加载、Tushare / 聚源 JY 字段映射、批量仿真与每日质量监控。"] },
+  { date: "2025.11 — 至今", org: "大寒智能量化公司", role: "量化研究实习生 · Alpha 因子 / 市场 Beta / 资产配置", points: ["负责 A 股基本面与分析师预期 Alpha 研究，覆盖价值、质量、成长、现金流和营运效率等因子族；统一 253 个因子定义，完成 178 个 Dolphin / PySim 信号实现，并建立 IC、RankIC、覆盖率和年度稳定性评估。", "开展 A 股 20 日尺度市场 Beta 研究，检验价格状态、估值、动量、流动性、订单簿和技术形态等信号。研究确认价格与回撤状态是主要解释变量，并从订单簿持续性、趋势一致性和形态频率中筛选出独立增量。", "完成月频宏观状态与多资产配置研究，将货币、信用、增长、通胀及市场确认信号映射至股票、债券、商品和黄金；完成回测、参数敏感性与历史时点审计，交付信号表、状态时间线和研究报告。", "构建约 131 GB 基本面与分析师 point-in-time 数据，完成 Dolphin PIT 加载、Tushare / 聚源 JY 字段统一、PySim 批量仿真及每日质量监控，为 Alpha 与资产配置研究提供可复现的数据基础。"] },
   { date: "2024.11 — 2025.04", org: "东软集团", role: "大模型评测实习生 · 项目负责人", points: ["负责基于大模型的周期信息抓取项目。", "以 Selenium、浏览器截图和 EasyOCR 应对反爬并提取文本。", "结合讯飞星火语义切分、DeepSeek RAG、飞书多维表格与 Coze 自动化工作流。"] },
   { date: "2023.12 — 2024.01", org: "纵存科技 · SAS 验证部", role: "测试实习生", points: ["参与 SAS IP 中 SATA 协议状态机验证，覆盖协议规范、操作场景与边界条件。", "完善 UVM 验证仿真环境，设计测试激励并完成 IP 功能验证。"] },
 ];
@@ -132,7 +132,7 @@ export default function Home() {
         </div>
       </div>
 
-      <footer className="academic-footer"><span>© 2026 GeFei Jia · Academic Profile v1.1</span><span>Last updated: September 2026</span></footer>
+      <footer className="academic-footer"><span>© 2026 GeFei Jia · Academic Profile v1.2</span><span>Last updated: September 2026</span></footer>
     </main>
   );
 }
