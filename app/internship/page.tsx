@@ -1,7 +1,6 @@
-/* eslint-disable @next/next/no-img-element */
+/* eslint-disable @next/next/no-img-element, @next/next/no-html-link-for-pages */
 
 import type { Metadata } from "next";
-import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "量化研究实习成果 | 贾格非",
@@ -47,21 +46,21 @@ export default function InternshipPage() {
     <main>
       <header className="topbar result-topbar">
         <div className="topbar-inner">
-          <Link className="top-identity" href="/"><strong>贾格非</strong><span>JIA GEFEI</span></Link>
+          <a className="top-identity" href="/"><strong>贾格非</strong><span>JIA GEFEI</span></a>
           <nav aria-label="成果页导航">
             <a href="#work">研究工作</a>
             <a href="#rerun">复跑记录</a>
             <a href="#audit">审计摘要</a>
             <a href="#diagram">工作图</a>
           </nav>
-          <Link className="github-link" href="/">返回主页</Link>
+          <a className="github-link" href="/">返回主页</a>
         </div>
       </header>
 
       <div className="result-shell">
         <aside className="result-sidebar" aria-label="实习信息">
           <div className="result-identity">
-            <Link className="back-link" href="/">← 返回个人主页</Link>
+            <a className="back-link" href="/">← 返回个人主页</a>
             <p className="result-kicker">QUANTITATIVE RESEARCH</p>
             <h1>大寒智能量化公司</h1>
             <p className="result-role">量化研究实习生</p>
@@ -148,7 +147,7 @@ export default function InternshipPage() {
         </div>
       </div>
 
-      <footer className="site-footer"><span>© 2026 贾格非</span><Link href="/">返回个人主页</Link></footer>
+      <footer className="site-footer"><span>© 2026 贾格非</span><a href="/">返回个人主页</a></footer>
     </main>
   );
 }

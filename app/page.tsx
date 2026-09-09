@@ -1,7 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 
-import Link from "next/link";
-
 const External = () => <span aria-hidden="true">↗</span>;
 
 function SectionHeading({ id, title, english }: { id: string; title: string; english: string }) {
@@ -174,11 +172,11 @@ export default function Home() {
                 <article className="timeline-entry featured-experience" key={item.org}>
                   <time>{item.date}</time>
                   <div>
-                    <h3><Link href="/internship/">{item.org}</Link></h3>
+                    <h3><a href="/internship/">{item.org}</a></h3>
                     <p className="entry-role">{item.role}</p>
                     <p className="entry-scope">{item.scope}</p>
                     <ul>{item.points.map((point) => <li key={point}>{point}</li>)}</ul>
-                    <Link className="result-link" href="/internship/">查看实习成果与脚本复跑记录 <External /></Link>
+                    <a className="result-link" href="/internship/">查看实习成果与脚本复跑记录 <External /></a>
                   </div>
                 </article>
               ) : (
