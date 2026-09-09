@@ -74,11 +74,10 @@ export default function InternshipPage() {
         <div className="topbar-inner">
           <a className="top-identity" href="/"><strong>贾格非</strong><span>JIA GEFEI</span></a>
           <nav aria-label="成果页导航">
-            <a href="#map">工作关系</a>
             <a href="#work">项目记录</a>
-            <a href="#rerun">核验记录</a>
-            <a href="#audit">宏观审计</a>
-            <a href="#materials">附件</a>
+            <a href="#rerun">复跑结果</a>
+            <a href="#audit">审计摘要</a>
+            <a href="#diagram">工作图</a>
           </nav>
           <a className="github-link" href="/">返回主页</a>
         </div>
@@ -102,31 +101,22 @@ export default function InternshipPage() {
 
         <div className="result-content">
           <header className="result-intro">
-            <h2>量化研究实习</h2>
-            <p className="result-byline">大寒智能量化公司 · 量化研究实习生 · 2025.11 — 至今</p>
+            <p className="eyebrow">实习工作与公开核验记录</p>
+            <h2>量化研究实习｜工作记录</h2>
             <p>实习工作分为研究与数据工程两部分：研究侧完成 Alpha、市场 Beta 和宏观配置课题，工程侧负责财务 PIT 加载、数据源同步与日频任务。以下按项目记录个人承担的工作、形成的产物和可公开核验的结果；公司策略公式、组合参数、信号值和证券明细不公开。</p>
           </header>
 
-          <section className="result-section result-map" id="map">
-            <header className="result-section-heading"><h2>工作关系</h2><span>WORK MAP</span></header>
-            <figure>
-              <a href="/quant-research-architecture.svg" target="_blank" rel="noreferrer">
-                <img src="/quant-research-architecture.svg" alt="量化研究与数据工程工作关系图" />
-              </a>
-              <figcaption>数据可见性与质量控制是三类研究的共同底座；图中箭头表示数据交接、验证和研究结论回写。点击可查看原图。</figcaption>
-            </figure>
-          </section>
-
           <section className="result-section" id="work">
             <header className="result-section-heading"><h2>项目记录</h2><span>SELECTED WORK</span></header>
-            <div className="project-records">
+            <div className="work-list">
               {projectRecords.map((item) => (
                 <article key={item.index}>
-                  <div className="project-record-index"><strong>{item.index}</strong><span>{item.label}</span></div>
+                  <span>{item.index}</span>
                   <div>
+                    <p className="work-label">{item.label}</p>
                     <h3>{item.title}</h3>
                     <p>{item.body}</p>
-                    <p className="record-evidence">{item.note}</p>
+                    <p className="work-note">{item.note}</p>
                   </div>
                 </article>
               ))}
@@ -134,72 +124,61 @@ export default function InternshipPage() {
           </section>
 
           <section className="result-section" id="rerun">
-            <header className="result-section-heading"><h2>核验记录</h2><span>VALIDATION</span></header>
+            <header className="result-section-heading"><h2>脚本复跑结果</h2><span>RERUN</span></header>
             <p className="result-section-intro">远端脚本只在合成数据、临时目录或只读模式下执行；下列记录不含公司策略参数和证券级结果。</p>
-            <div className="research-records">
-              <article>
-                <time>2026.09.09</time>
-                <div>
-                  <h3>Alpha 因子日报</h3>
-                  <p>使用 2026 年 9 月 8 日的实际研究数据重新生成日报。全市场范围为 4,300 个样本，其中 4,169 个进入计算，覆盖率为 96.95%；同时生成 5、10 和 20 日三个观察期的报告。</p>
-                  <p className="record-note">运行完成 · 退出状态 0 · 收益与 IC 数值未公开</p>
-                </div>
-              </article>
-              <article>
-                <time>2026.09.09</time>
-                <div>
-                  <h3>市场 Beta 合成规则测试</h3>
-                  <p>在合成数据上复跑两组确定性测试：因子合成测试 10 / 10 通过，耗时 0.878 秒；方向与因果约束测试 12 / 12 通过，耗时 0.272 秒。</p>
-                  <p className="record-note">共 22 项测试 · 覆盖未来数据隔离、单日滞后、滚动边界、空检验、正交残差和原子化输出</p>
-                </div>
-              </article>
-              <article>
-                <time>2026.09.09</time>
-                <div>
-                  <h3>多资产日频任务测试</h3>
-                  <p>复跑分页、交易日解析、补采任务、收盘核验和并发控制三组测试，共 26 / 26 项通过，耗时 0.50 秒。</p>
-                  <p className="record-note">隔离临时目录 · 不写入生产数据 · 不调用真实网络接口</p>
-                </div>
-              </article>
-              <article>
-                <time>2026.09.09</time>
-                <div>
-                  <h3>聚源 PIT 全量完整性审计</h3>
-                  <p>审计 22 张表和 97,105 个历史分区文件；应保留的 145,171,459 行记录全部匹配，1,826 行因当时尚不可见被正确排除。</p>
-                  <p className="record-note">完成状态 0 · 未来行、缺失文件、内容、行数及表头不一致均为 0</p>
-                </div>
-              </article>
+            <div className="table-wrap">
+              <table className="result-table">
+                <thead><tr><th>任务</th><th>公开结果</th><th>状态</th></tr></thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Alpha 因子日报</strong><small>实际研究数据 · 数据日 2026.09.08</small></td>
+                    <td>4,169 / 4,300 个样本，覆盖率 96.95%；生成 5、10、20 日三个观察期报告</td>
+                    <td>完成</td>
+                  </tr>
+                  <tr>
+                    <td><strong>市场 Beta 合成测试</strong><small>合成数据 · 确定性测试</small></td>
+                    <td>两组测试分别为 10 / 10、12 / 12 通过</td>
+                    <td>22 / 22</td>
+                  </tr>
+                  <tr>
+                    <td><strong>多资产日频任务</strong><small>临时目录 · 模拟依赖</small></td>
+                    <td>分页、交易日解析、补采、收盘核验和并发控制测试全部通过</td>
+                    <td>26 / 26</td>
+                  </tr>
+                  <tr>
+                    <td><strong>聚源 PIT 完整性</strong><small>全量只读审计</small></td>
+                    <td>97,105 个历史文件与 145,171,459 行可见记录全部匹配</td>
+                    <td>0 差异</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
+            <p className="method-note">测试与审计覆盖未来数据隔离、滚动边界、环移空检验、正交残差、分页完整性、待补任务闭环、并发锁和原子化输出。</p>
           </section>
 
           <section className="result-section" id="audit">
-            <header className="result-section-heading"><h2>宏观配置审计</h2></header>
+            <header className="result-section-heading"><h2>宏观研究审计摘要</h2><span>AUDIT</span></header>
             <p className="result-section-intro">本次读取已有审计产物进行核对，没有改写生产输出。</p>
-            <div className="research-records">
-              <article>
-                <time>PIT</time>
-                <div><h3>时点与确定性检查</h3><p>72 项历史时点抽查全部通过，未发现提前读取；使用相同输入进行两次复跑，输出一致。</p></div>
-              </article>
-              <article>
-                <time>敏感性</time>
-                <div><h3>参数与状态时间线</h3><p>审计产物包含 46 组参数敏感性变体和 26 个连续状态阶段，用于检查结论是否依赖单一参数以及状态切换是否连贯。</p></div>
-              </article>
-              <article>
-                <time>压力阶段</time>
-                <div>
-                  <h3>六个历史阶段中四个通过</h3>
-                  <p>2020 年疫情冲击、2020 年下半年修复、2021—2022 年下行和 2024 年 9 月市场反转通过预设检查。2015 年市场异常波动与 2018 年去杠杆阶段未通过，分别出现恢复判断偏早和状态分类偏差；这两段作为模型适用边界保留。</p>
-                </div>
-              </article>
+            <dl className="audit-list">
+              <div><dt>PIT 时点抽查</dt><dd><strong>72 / 72</strong><span>未发现提前读取</span></dd></div>
+              <div><dt>确定性复跑</dt><dd><strong>一致</strong><span>相同输入得到相同输出</span></dd></div>
+              <div><dt>参数敏感性</dt><dd><strong>46</strong><span>组变体</span></dd></div>
+              <div><dt>状态时间线</dt><dd><strong>26</strong><span>个连续阶段</span></dd></div>
+              <div><dt>历史压力检查</dt><dd><strong>4 / 6</strong><span>通过预设检查</span></dd></div>
+            </dl>
+            <div className="limitation-note">
+              <h3>保留的失败案例</h3>
+              <p>2015 年市场异常波动与 2018 年去杠杆阶段未通过预设检查，分别出现恢复判断偏早和状态分类偏差；两段结果作为模型适用边界保留。</p>
             </div>
           </section>
 
-          <section className="result-section" id="materials">
-            <header className="result-section-heading"><h2>附件</h2></header>
-            <ul className="attachment-list">
-              <li><a href="/results/remote-validation-2026-09-09.json" target="_blank" rel="noreferrer">远端复跑结果（JSON） <External /></a><p>本页复跑数据的机器可读版本，已移除服务器、路径和策略敏感信息。</p></li>
-              <li><a href="/quant-research-architecture.svg" target="_blank" rel="noreferrer">实习工作结构图 <External /></a><p>说明 Alpha、市场 Beta、宏观配置和 PIT 数据工程之间的工作关系。</p></li>
-            </ul>
+          <section className="result-section" id="diagram">
+            <header className="result-section-heading"><h2>工作结构图</h2><span>MAP</span></header>
+            <p className="result-section-intro">数据可见性与质量控制是三类研究的共同底座。点击图片可单独查看。</p>
+            <figure className="result-figure">
+              <div><a href="/quant-research-architecture.svg" target="_blank" rel="noreferrer"><img src="/quant-research-architecture.svg" alt="量化研究与数据工程工作关系图" /></a></div>
+              <figcaption><span>量化研究实习工作结构图</span><a href="/quant-research-architecture.svg" target="_blank" rel="noreferrer">单独查看 <External /></a></figcaption>
+            </figure>
           </section>
 
           <p className="result-disclosure">复跑结果只证明相应程序在所述环境和数据口径下完成，并不构成投资建议，也不代表未来收益。</p>
