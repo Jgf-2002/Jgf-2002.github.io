@@ -123,7 +123,7 @@ export default function Home() {
           <section className="paper-section quant-workflow-section">
             <AcademicHeading id="quant-workflow" mark="QW" title="Quant Research Workflow" subtitle="Alpha 与宏观研究架构" />
             <p className="workflow-intro">这段实习以 Alpha 研究为核心、PIT 数据工程为底座，并延伸至宏观择时；三个工作流共享统一的时点约束、验证标准和审计记录。</p>
-            <div className="quant-work-grid">{quantWorkstreams.map((item) => <article key={item.code}><div className="quant-card-top"><span>{item.code}</span><strong>{item.metric}</strong></div><p className="quant-metric-label">{item.label}</p><h3>{item.title}</h3><p>{item.body}</p></article>)}</div>
+            <div className="quant-work-grid">{quantWorkstreams.map((item) => <article key={item.code}><div className="quant-index"><span>{item.code}</span><strong>{item.metric}</strong><small>{item.label}</small></div><div className="quant-copy"><h3>{item.title}</h3><p>{item.body}</p></div></article>)}</div>
             <p className="micro-title workflow-map-title">SYSTEM MAP / RESEARCH HANDOFF</p>
             <figure className="quant-figure">
               <div className="quant-figure-scroll"><img src="/quant-research-architecture.svg" alt="大寒智能量化实习中的 Alpha 因子、PIT 数据、宏观择时与研究审计流程图" /></div>
@@ -149,7 +149,7 @@ export default function Home() {
         </div>
       </div>
 
-      <footer className="academic-footer"><span>© 2026 GeFei Jia · Academic Profile v0.5</span><span>Last updated: September 2026</span></footer>
+      <footer className="academic-footer"><span>© 2026 GeFei Jia · Academic Profile v0.6</span><span>Last updated: September 2026</span></footer>
     </main>
   );
 }
