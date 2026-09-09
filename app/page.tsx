@@ -116,10 +116,12 @@ export default function Home() {
 
       <div className="page-shell">
         <aside className="profile-sidebar" aria-label="个人信息">
-          <div className="portrait-frame"><img src="/profile.jpg" alt="贾格非证件照" /></div>
-          <h1>贾格非</h1>
-          <p className="roman-name">Jia Gefei</p>
-          <p className="affiliation">中国科学技术大学<br />电子信息硕士研究生</p>
+          <div className="profile-identity">
+            <div className="portrait-frame"><img src="/profile.jpg" alt="贾格非证件照" /></div>
+            <h1>贾格非</h1>
+            <p className="roman-name">Jia Gefei</p>
+            <p className="affiliation">中国科学技术大学<br />电子信息硕士研究生</p>
+          </div>
 
           <section className="sidebar-section">
             <h2>研究方向</h2>

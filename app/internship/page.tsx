@@ -60,22 +60,24 @@ export default function InternshipPage() {
 
       <div className="result-shell">
         <aside className="result-sidebar" aria-label="实习信息">
-          <Link className="back-link" href="/">← 返回个人主页</Link>
-          <p className="result-kicker">QUANTITATIVE RESEARCH</p>
-          <h1>大寒智能量化公司</h1>
-          <p className="result-role">量化研究实习生</p>
+          <div className="result-identity">
+            <Link className="back-link" href="/">← 返回个人主页</Link>
+            <p className="result-kicker">QUANTITATIVE RESEARCH</p>
+            <h1>大寒智能量化公司</h1>
+            <p className="result-role">量化研究实习生</p>
+          </div>
           <dl className="result-meta">
             <div><dt>时间</dt><dd>2025.11 — 至今</dd></div>
             <div><dt>方向</dt><dd>Alpha、Beta、宏观配置与 PIT 数据</dd></div>
             <div><dt>核验日期</dt><dd>2026.09.09</dd></div>
           </dl>
-          <a className="raw-result-link" href="/results/remote-validation-2026-09-09.json" target="_blank" rel="noreferrer">查看机器可读结果 <External /></a>
+          <div className="result-sidebar-link"><a className="raw-result-link" href="/results/remote-validation-2026-09-09.json" target="_blank" rel="noreferrer">查看机器可读结果 <External /></a></div>
         </aside>
 
         <div className="result-content">
           <header className="result-intro">
             <p className="eyebrow">实习工作与公开核验记录</p>
-            <h2>量化研究：从数据口径到验证交付</h2>
+            <h2>量化研究实习｜公开工作记录</h2>
             <p>本页记录我在实习中承担的研究工作，并附上 2026 年 9 月 9 日在远端研究环境中的复跑结果。为遵守公司保密要求，策略公式、组合权重、信号值、IC / RankIC 数值和证券明细均未公开。</p>
           </header>
 
