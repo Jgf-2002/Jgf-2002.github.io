@@ -93,7 +93,7 @@ const projects = [
 export default function Home() {
   return (
     <main>
-      <header className="topbar">
+      <header className="topbar home-topbar">
         <div className="topbar-inner">
           <a className="top-identity" href="#about"><strong>贾格非</strong><span>JIA GEFEI</span></a>
           <nav aria-label="页面导航">
@@ -108,35 +108,40 @@ export default function Home() {
         </div>
       </header>
 
+      <section className="landing-hero" aria-labelledby="hero-name">
+        <div className="hero-light hero-light-one" aria-hidden="true" />
+        <div className="hero-light hero-light-two" aria-hidden="true" />
+        <div className="hero-grid" aria-hidden="true" />
+        <div className="hero-content">
+          <div className="hero-portrait"><img src="/profile.jpg" alt="贾格非" /></div>
+          <p className="hero-kicker">RESEARCH · ENGINEERING · QUANTITATIVE FINANCE</p>
+          <h1 id="hero-name">贾格非</h1>
+          <p className="hero-name-en">JIA GEFEI</p>
+          <p className="hero-role">中国科学技术大学 · 电子信息硕士研究生</p>
+          <p className="hero-focus">博弈论与随机过程 · 滤波与控制 · 量化研究</p>
+          <nav className="hero-links" aria-label="首屏入口">
+            <a className="hero-link-primary" href="#about">进入主页</a>
+            <a href="/internship/">量化研究实习</a>
+            <a href="https://github.com/Jgf-2002" target="_blank" rel="noreferrer">GitHub <External /></a>
+          </nav>
+        </div>
+        <a className="hero-scroll" href="#about"><span>SCROLL</span><i aria-hidden="true" /></a>
+      </section>
+
       <div className="page-shell">
-        <aside className="profile-sidebar" aria-label="个人信息">
-          <div className="profile-identity">
-            <div className="portrait-frame"><img src="/profile.jpg" alt="贾格非证件照" /></div>
-            <h1>贾格非</h1>
-            <p className="roman-name">Jia Gefei</p>
-            <p className="affiliation">中国科学技术大学<br />电子信息硕士研究生</p>
-          </div>
-
-          <section className="sidebar-section">
-            <h2>研究方向</h2>
-            <p>博弈论与随机过程</p>
-            <p>滤波与控制</p>
-            <p>机器学习与量化研究</p>
-          </section>
-
-          <section className="sidebar-section sidebar-contact">
-            <h2>联系方式</h2>
-            <a href="mailto:gefei20020421@163.com">gefei20020421@163.com</a>
-            <a href="https://github.com/Jgf-2002" target="_blank" rel="noreferrer">github.com/Jgf-2002 <External /></a>
-            <p>合肥，中国</p>
-          </section>
-        </aside>
-
         <div className="resume-content">
           <section className="resume-section intro-section">
             <SectionHeading id="about" title="个人简介" english="ABOUT" />
-            <p className="intro-lead">现就读于中国科学技术大学电子信息专业，研究方向为基于博弈论的马尔可夫随机过程滤波与控制。</p>
-            <p>本科毕业于东北大学自动化专业（郎世俊实验班）。本科期间参与医学图像识别、滑模控制、电子系统测量和智能调度研究；目前在大寒智能量化公司实习，主要负责多源金融数据工程，以及 A 股中低频 Alpha 与 Beta 因子研究。</p>
+            <div className="intro-grid">
+              <div className="intro-copy">
+                <p className="intro-lead">现就读于中国科学技术大学电子信息专业，研究方向为基于博弈论的马尔可夫随机过程滤波与控制。</p>
+                <p>本科毕业于东北大学自动化专业（郎世俊实验班）。本科期间参与医学图像识别、滑模控制、电子系统测量和智能调度研究；目前在大寒智能量化公司实习，主要负责多源金融数据工程，以及 A 股中低频 Alpha 与 Beta 因子研究。</p>
+              </div>
+              <aside className="intro-meta" aria-label="研究方向与联系方式">
+                <div><h3>研究方向</h3><p>博弈论与随机过程<br />滤波与控制<br />机器学习与量化研究</p></div>
+                <div><h3>联系</h3><a href="mailto:gefei20020421@163.com">gefei20020421@163.com</a><a href="https://github.com/Jgf-2002" target="_blank" rel="noreferrer">GitHub <External /></a><p>合肥，中国</p></div>
+              </aside>
+            </div>
           </section>
 
           <section className="resume-section">
