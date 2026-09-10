@@ -1,10 +1,33 @@
+"use client";
+
 /* eslint-disable @next/next/no-img-element */
+
+import { useEffect, useState } from "react";
+import type { PointerEvent } from "react";
 
 const External = () => <span aria-hidden="true">↗</span>;
 
+const disciplines = [
+  { key: "control", short: "CONTROL", title: "随机过程与控制", description: "以博弈论与马尔可夫随机过程为基础，研究滤波、估计与控制问题。" },
+  { key: "quant", short: "QUANT", title: "量化研究", description: "围绕多源 PIT 数据、中低频 Alpha 与市场 Beta 开展可复现研究。" },
+  { key: "engineering", short: "SYSTEMS", title: "研究工程", description: "把数据接入、任务编排、质量检查与回测验证连成稳定的研究链路。" },
+];
+
+const sectionLinks = [
+  { id: "about", label: "简介" },
+  { id: "education", label: "教育" },
+  { id: "publications", label: "论文" },
+  { id: "experience", label: "经历" },
+  { id: "projects", label: "项目" },
+  { id: "honors", label: "荣誉" },
+];
+
 function SectionHeading({ id, title, english }: { id: string; title: string; english: string }) {
   return (
-    <header className="section-heading" id={id} aria-label={`${title} / ${english}`}><h2>{title}</h2></header>
+    <header className="section-heading" id={id} aria-label={`${title} / ${english}`}>
+      <div><span>{english}</span><h2>{title}</h2></div>
+      <i aria-hidden="true" />
+    </header>
   );
 }
 
@@ -91,46 +114,145 @@ const projects = [
 ];
 
 export default function Home() {
+  const [activeDiscipline, setActiveDiscipline] = useState(1);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [activeSection, setActiveSection] = useState("about");
+  const [openExperience, setOpenExperience] = useState(0);
+
+  useEffect(() => {
+    const updateProgress = () => {
+      const available = document.documentElement.scrollHeight - window.innerHeight;
+      setScrollProgress(available > 0 ? Math.min(100, (window.scrollY / available) * 100) : 0);
+    };
+    updateProgress();
+    window.addEventListener("scroll", updateProgress, { passive: true });
+    window.addEventListener("resize", updateProgress);
+    return () => {
+      window.removeEventListener("scroll", updateProgress);
+      window.removeEventListener("resize", updateProgress);
+    };
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.classList.add("js-reveal");
+    const sections = Array.from(document.querySelectorAll<HTMLElement>(".resume-section"));
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-visible");
+        const heading = entry.target.querySelector<HTMLElement>("[id]");
+        if (heading?.id) setActiveSection(heading.id);
+      });
+    }, { rootMargin: "-18% 0px -44%", threshold: 0.08 });
+    sections.forEach((section) => observer.observe(section));
+    return () => {
+      observer.disconnect();
+      document.documentElement.classList.remove("js-reveal");
+    };
+  }, []);
+
+  const trackPointer = (event: PointerEvent<HTMLElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    event.currentTarget.style.setProperty("--pointer-x", `${event.clientX - rect.left}px`);
+    event.currentTarget.style.setProperty("--pointer-y", `${event.clientY - rect.top}px`);
+    event.currentTarget.style.setProperty("--tilt-x", `${((event.clientY - rect.top) / rect.height - 0.5) * -7}deg`);
+    event.currentTarget.style.setProperty("--tilt-y", `${((event.clientX - rect.left) / rect.width - 0.5) * 7}deg`);
+  };
+
+  const tiltCard = (event: PointerEvent<HTMLElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    event.currentTarget.style.setProperty("--card-x", `${((event.clientY - rect.top) / rect.height - 0.5) * -5}deg`);
+    event.currentTarget.style.setProperty("--card-y", `${((event.clientX - rect.left) / rect.width - 0.5) * 5}deg`);
+    event.currentTarget.style.setProperty("--card-glow-x", `${event.clientX - rect.left}px`);
+    event.currentTarget.style.setProperty("--card-glow-y", `${event.clientY - rect.top}px`);
+  };
+
+  const resetCard = (event: PointerEvent<HTMLElement>) => {
+    event.currentTarget.style.setProperty("--card-x", "0deg");
+    event.currentTarget.style.setProperty("--card-y", "0deg");
+  };
+
+  const activeField = disciplines[activeDiscipline];
+
   return (
-    <main>
+    <main className="interactive-resume">
+      <div className="scroll-progress" aria-hidden="true"><i style={{ width: `${scrollProgress}%` }} /></div>
       <header className="topbar home-topbar">
         <div className="topbar-inner">
           <a className="top-identity" href="#about"><strong>贾格非</strong><span>JIA GEFEI</span></a>
           <nav aria-label="页面导航">
-            <a href="#about">简介</a>
-            <a href="#education">教育</a>
-            <a href="#publications">论文</a>
-            <a href="#experience">经历</a>
-            <a href="#projects">项目</a>
-            <a href="#honors">荣誉</a>
+            {sectionLinks.map((link) => <a className={activeSection === link.id ? "is-active" : ""} href={`#${link.id}`} key={link.id}>{link.label}</a>)}
           </nav>
           <a className="github-link" href="https://github.com/Jgf-2002" target="_blank" rel="noreferrer">GitHub <External /></a>
         </div>
       </header>
 
-      <section className="landing-hero" aria-labelledby="hero-name">
+      <section className="landing-hero" aria-labelledby="hero-name" onPointerMove={trackPointer}>
+        <div className="hero-cursor-glow" aria-hidden="true" />
         <div className="hero-light hero-light-one" aria-hidden="true" />
         <div className="hero-light hero-light-two" aria-hidden="true" />
         <div className="hero-grid" aria-hidden="true" />
-        <div className="hero-content">
-          <div className="hero-portrait"><img src="/profile.jpg" alt="贾格非" /></div>
-          <p className="hero-kicker">RESEARCH · ENGINEERING · QUANTITATIVE FINANCE</p>
-          <h1 id="hero-name">贾格非</h1>
-          <p className="hero-name-en">JIA GEFEI</p>
-          <p className="hero-role">中国科学技术大学 · 电子信息硕士研究生</p>
-          <p className="hero-focus">博弈论与随机过程 · 滤波与控制 · 量化研究</p>
-          <nav className="hero-links" aria-label="首屏入口">
-            <a className="hero-link-primary" href="#about">进入主页</a>
-            <a href="/internship/">量化研究实习</a>
-            <a href="https://github.com/Jgf-2002" target="_blank" rel="noreferrer">GitHub <External /></a>
-          </nav>
+        <div className="hero-content interactive-hero-content">
+          <div className="hero-copy">
+            <p className="hero-status"><i aria-hidden="true" /> OPEN TO RESEARCH &amp; QUANT OPPORTUNITIES</p>
+            <p className="hero-kicker">RESEARCH · ENGINEERING · QUANTITATIVE FINANCE</p>
+            <h1 id="hero-name">贾格非</h1>
+            <p className="hero-name-en">JIA GEFEI</p>
+            <p className="hero-role">中国科学技术大学 · 电子信息硕士研究生</p>
+            <p className="hero-focus">博弈论与随机过程 · 滤波与控制 · 量化研究</p>
+            <nav className="hero-links" aria-label="首屏入口">
+              <a className="hero-link-primary" href="#about">探索履历</a>
+              <a href="/internship/">量化研究实习</a>
+              <a href="https://github.com/Jgf-2002" target="_blank" rel="noreferrer">GitHub <External /></a>
+            </nav>
+          </div>
+          <div className="hero-console" aria-label="研究方向交互面板">
+            <div className="hero-orbit">
+              <div className="orbit-ring orbit-ring-outer" aria-hidden="true" />
+              <div className="orbit-ring orbit-ring-inner" aria-hidden="true" />
+              <div className="hero-portrait"><img src="/profile.jpg" alt="贾格非" /></div>
+              {disciplines.map((discipline, index) => (
+                <button
+                  className={`orbit-node orbit-node-${index + 1}${activeDiscipline === index ? " is-active" : ""}`}
+                  type="button"
+                  key={discipline.key}
+                  aria-pressed={activeDiscipline === index}
+                  onClick={() => setActiveDiscipline(index)}
+                >
+                  <span>{String(index + 1).padStart(2, "0")}</span>{discipline.short}
+                </button>
+              ))}
+            </div>
+            <div className="hero-discipline-card" aria-live="polite">
+              <span>ACTIVE FIELD / {String(activeDiscipline + 1).padStart(2, "0")}</span>
+              <strong>{activeField.title}</strong>
+              <p>{activeField.description}</p>
+            </div>
+          </div>
         </div>
         <a className="hero-scroll" href="#about"><span>SCROLL</span><i aria-hidden="true" /></a>
       </section>
 
+      <div className="capability-ticker" aria-label="研究与工程关键词">
+        <div>
+          <span>STOCHASTIC CONTROL</span><i />
+          <span>POINT-IN-TIME DATA</span><i />
+          <span>ALPHA RESEARCH</span><i />
+          <span>MARKET BETA</span><i />
+          <span>CAUSAL VALIDATION</span><i />
+          <span>RESEARCH ENGINEERING</span><i />
+          <span>STOCHASTIC CONTROL</span><i />
+          <span>POINT-IN-TIME DATA</span><i />
+          <span>ALPHA RESEARCH</span><i />
+          <span>MARKET BETA</span><i />
+          <span>CAUSAL VALIDATION</span><i />
+          <span>RESEARCH ENGINEERING</span><i />
+        </div>
+      </div>
+
       <div className="page-shell">
         <div className="resume-content">
-          <section className="resume-section intro-section">
+          <section className="resume-section intro-section" data-chapter="01">
             <SectionHeading id="about" title="个人简介" english="ABOUT" />
             <div className="intro-grid">
               <div className="intro-copy">
@@ -144,7 +266,7 @@ export default function Home() {
             </div>
           </section>
 
-          <section className="resume-section">
+          <section className="resume-section" data-chapter="02">
             <SectionHeading id="education" title="教育背景" english="EDUCATION" />
             <div className="timeline-list">
               {education.map((item) => (
@@ -156,7 +278,7 @@ export default function Home() {
             </div>
           </section>
 
-          <section className="resume-section">
+          <section className="resume-section" data-chapter="03">
             <SectionHeading id="publications" title="论文成果" english="PUBLICATIONS" />
             <div className="publication-list">
               {publications.map((item) => (
@@ -166,42 +288,49 @@ export default function Home() {
             <p className="section-note">正式题名、作者顺序及论文链接将在公开版本补充。</p>
           </section>
 
-          <section className="resume-section">
+          <section className="resume-section experience-section" data-chapter="04">
             <SectionHeading id="experience" title="实习经历" english="EXPERIENCE" />
-            <div className="timeline-list">
-              {experience.map((item, index) => index === 0 ? (
-                <article className="timeline-entry featured-experience" key={item.org}>
+            <div className="experience-list">
+              {experience.map((item, index) => (
+                <article className={`experience-accordion${index === 0 ? " featured-experience" : ""}${openExperience === index ? " is-open" : ""}`} key={item.org}>
                   <time>{item.date}</time>
-                  <div>
-                    <h3><a href="/internship/">{item.org}</a></h3>
-                    <p className="entry-role">{item.role}</p>
-                    <p className="entry-scope">{item.scope}</p>
-                    <ul>{item.points.map((point) => <li key={point}>{point}</li>)}</ul>
-                    <a className="result-link" href="/internship/">查看数据链路与研究记录 <External /></a>
+                  <div className="experience-main">
+                    <div className="experience-heading">
+                      <div>
+                        <h3>{index === 0 ? <a href="/internship/">{item.org}</a> : item.org}</h3>
+                        <p className="entry-role">{item.role}</p>
+                      </div>
+                      <button type="button" aria-expanded={openExperience === index} aria-controls={`experience-${index}`} onClick={() => setOpenExperience(openExperience === index ? -1 : index)}>
+                        <span>{openExperience === index ? "收起" : "查看"}</span><i aria-hidden="true" />
+                      </button>
+                    </div>
+                    <div className="experience-collapse" id={`experience-${index}`}>
+                      <div>
+                        {item.scope && <p className="entry-scope">{item.scope}</p>}
+                        <ul>{item.points.map((point) => <li key={point}>{point}</li>)}</ul>
+                        {index === 0 && <a className="result-link" href="/internship/">进入交互式实习档案 <External /></a>}
+                      </div>
+                    </div>
                   </div>
                 </article>
-              ) : (
-                <article className="timeline-entry" key={item.org}>
-                  <time>{item.date}</time>
-                  <div><h3>{item.org}</h3><p className="entry-role">{item.role}</p><ul>{item.points.map((point) => <li key={point}>{point}</li>)}</ul></div>
-                </article>
               ))}
             </div>
           </section>
 
-          <section className="resume-section">
+          <section className="resume-section" data-chapter="05">
             <SectionHeading id="projects" title="科研与项目" english="PROJECTS" />
-            <div className="project-list">
-              {projects.map((project) => (
-                <article className="project-entry" key={project.title}>
+            <div className="project-list interactive-project-list">
+              {projects.map((project, index) => (
+                <article className="project-entry project-card" key={project.title} onPointerMove={tiltCard} onPointerLeave={resetCard}>
+                  <span className="project-index">0{index + 1}</span>
                   <time>{project.date}</time>
-                  <div><h3>{project.title}</h3><p className="entry-role">{project.role}</p><p>{project.body}</p>{project.result && <p className="project-result"><strong>结果：</strong>{project.result}</p>}</div>
+                  <div><p className="entry-role">{project.role}</p><h3>{project.title}</h3><p>{project.body}</p>{project.result && <p className="project-result"><strong>结果：</strong>{project.result}</p>}</div>
                 </article>
               ))}
             </div>
           </section>
 
-          <section className="resume-section">
+          <section className="resume-section" data-chapter="06">
             <SectionHeading id="honors" title="荣誉与奖项" english="HONORS" />
             <ul className="honor-list">
               <li><span>2023</span><strong>全国大学生电子设计竞赛全国二等奖</strong><em>辽宁赛区该赛道最高奖</em></li>
@@ -211,7 +340,7 @@ export default function Home() {
             </ul>
           </section>
 
-          <section className="resume-section skills-section">
+          <section className="resume-section skills-section" data-chapter="07">
             <SectionHeading id="skills" title="技术能力" english="SKILLS" />
             <dl className="skills-list">
               <div><dt>编程与数据</dt><dd>Python · Pandas · NumPy · scikit-learn · Matplotlib · Seaborn</dd></div>

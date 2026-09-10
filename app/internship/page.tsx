@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-html-link-for-pages, @next/next/no-img-element */
 
 import type { Metadata } from "next";
+import ExperienceExplorer from "./experience-explorer";
 
 export const metadata: Metadata = {
   title: "量化研究实习成果 | 贾格非",
@@ -32,6 +33,7 @@ const projectRecords = [
       "PIT 加载｜开发 Dolphin C++ 财报 PIT Dataloader，直接读取财报公告流并按公告日完成 as-of 对齐；通过 XML 维护 Tushare / JY 字段、证券代码与报表合并规则，使下游因子回测切换数据源时能够一键复用。",
       "质量闭环｜围绕字段完整性、非空率、未来日期、数据新鲜度、上游对账和行数一致性设置自动校验；按正常、待上游发布、阻断异常分级，将缺数 / 短量、CDC 状态与产出审计汇总为飞书卡片，支持可视化审阅和异常定位。",
     ],
+    flow: ["SOURCE", "SCHEDULER", "PIT", "QC", "RESEARCH"],
   },
   {
     title: "中低频 Alpha 研究",
@@ -41,6 +43,7 @@ const projectRecords = [
       "研究评价｜统一统计覆盖率、IC / RankIC、分年度稳定性和 5 / 10 / 20 日多周期表现，结合缺失来源和极值分布定位异常结果。",
       "日常交付｜维护因子注册表、批量执行脚本和日频监控报告，使新增因子沿同一取数、计算、验证和复核流程进入研究池。",
     ],
+    flow: ["DEFINE", "PIT", "SIGNAL", "SIM", "MONITOR"],
     note: "交付结果：打通“因子定义—PIT 取数—Dolphin 实现—PySim 验证—日报跟踪”的研究流程，为后续因子去冗余与组合研究提供同口径输入。",
   },
   {
@@ -51,6 +54,7 @@ const projectRecords = [
       "增量检验｜使用 20 个非重叠相位、分年度复核和环移 null 判断稳定性，再通过联合回归与残差 IC 检查候选信号在基准因子之外是否仍有信息。",
       "归因合成｜以价格与回撤状态作为基准解释，保留趋势一致性和部分微观结构增量；未通过独立性检验的估值、简单动量和形态方向信号不进入合成。",
     ],
+    flow: ["HYPOTHESIS", "PHASE", "NULL", "RESIDUAL", "SYNTHESIS"],
     note: "交付结果：形成候选登记、单因子检验、共线性归因、残差复核与组合验证的完整记录，保留失败假设，避免更换参数后重复挖掘。",
   },
 ];
@@ -83,21 +87,8 @@ export default function InternshipPage() {
 
           <section className="result-section" id="work">
             <header className="result-section-heading"><h2>核心工作</h2></header>
-            <div className="work-list">
-              {projectRecords.map((item) => (
-                <article key={item.title}>
-                  <h3>{item.title}</h3>
-                  <div className="work-body">
-                    <p>{item.body}</p>
-                    <ul className="work-detail-list">{item.details.map((detail) => {
-                      const [term, description] = detail.split("｜");
-                      return <li key={detail}><strong>{term}</strong><span>{description}</span></li>;
-                    })}</ul>
-                    {item.note && <p className="work-note">{item.note}</p>}
-                  </div>
-                </article>
-              ))}
-            </div>
+            <p className="result-section-intro">点击工作模块，沿研究链路查看对应职责、实现方式与交付结果。</p>
+            <ExperienceExplorer records={projectRecords} />
           </section>
 
           <section className="result-section" id="rerun">
