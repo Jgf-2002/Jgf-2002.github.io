@@ -4,10 +4,7 @@ const External = () => <span aria-hidden="true">↗</span>;
 
 function SectionHeading({ id, title, english }: { id: string; title: string; english: string }) {
   return (
-    <header className="section-heading" id={id}>
-      <h2>{title}</h2>
-      <span>{english}</span>
-    </header>
+    <header className="section-heading" id={id} aria-label={`${title} / ${english}`}><h2>{title}</h2></header>
   );
 }
 
