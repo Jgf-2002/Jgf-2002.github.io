@@ -25,24 +25,40 @@ const External = () => <span aria-hidden="true">↗</span>;
 const projectRecords = [
   {
     index: "01",
-    label: "DATA ENGINEERING",
-    title: "多源金融数据落盘与研究数据底座",
-    body: "负责 Tushare、聚源 JY 与 AkShare 数据接入和落盘，覆盖财务报表、分析师预期、A 股量价与资金流，以及指数、基金、期货、期权和部分海外市场数据。建立全量初始化、日增量更新、缺口补采和日终核验链路，统一证券代码、字段、交易日和公告可见时间口径。",
-    note: "累计整理约 131 GB 历史数据；完成 Dolphin 原生财务 PIT 加载和 Tushare / JY 字段映射。聚源 PIT 全量审计覆盖 22 张表、97,105 个文件和约 1.45 亿行可见记录，未发现未来数据或文件、内容、行数和表头差异。",
+    label: "DATA PLATFORM",
+    title: "多源数据落盘与 PIT 研究底座",
+    body: "负责 Tushare、聚源 JY 与 AkShare 数据的生产化接入。Tushare / JY 提供 A 股、财务与分析师等核心数据，AkShare 补充海外指数、中概股与商品行情；所有数据在进入研究前统一证券代码、字段、交易日和公告可见时间口径。",
+    details: [
+      "任务编排｜使用 XML 配置 Avatar / Dagflow，将 A 股主链、Universe、期货、期权、基金、债券、指数权重、延迟补采与日终 Closeout 拆分为独立节点，统一调度、重试、超时、进程锁和日志。",
+      "增量发布｜基于 MySQL binlog CDC 识别 JY 变更分区，数据依次经过 staging、latest / PIT / mirror 构建和质量检查后原子发布；仅在发布成功后提交 watermark，失败任务保留 pending state 供幂等重跑。",
+      "PIT 加载｜开发 Dolphin C++ 财报 PIT Dataloader，直接读取财报公告流并按公告日完成 as-of 对齐；通过 XML 维护 Tushare / JY 字段、证券代码和报表合并规则，下游 signal / PySim 切换数据源时无需改动研究代码。",
+      "质量闭环｜配置字段数、非空、未来日期、freshness、上游对账与行数检查，区分正常、待上游发布与阻断异常；将缺数 / 短量、CDC 状态和产出审计汇总为飞书卡片。",
+    ],
+    note: "交付结果：形成“数据源—任务编排—增量同步—PIT 加载—质量检查—研究消费”的完整链路，补采或单节点失败不会覆盖已经发布的数据。",
   },
   {
     index: "02",
     label: "ALPHA RESEARCH",
     title: "基本面、分析师预期与量价 Alpha",
-    body: "负责 A 股中低频 Alpha 因子研究，覆盖价值、质量、成长、现金流、营运效率、分析师预期和量价等方向；完成因子定义、PIT 取数、Dolphin / PySim 实现、批量回测和日报跟踪，并以统一证券池和收益窗口比较候选因子。",
-    note: "整理 253 个基本面及分析师因子定义，完成 178 个可运行实现；按覆盖率、IC、RankIC、分年度稳定性和多周期表现进行筛选。最近一次日报覆盖 4,300 只股票，其中 4,169 只进入计算，覆盖率 96.95%。",
+    body: "负责 A 股基本面、分析师预期与量价类中低频 Alpha 研究。研究范围覆盖价值、质量、成长、现金流、营运效率、预期修正和量价状态，在统一证券池、PIT 数据口径和收益窗口下比较候选信号。",
+    details: [
+      "因子生产｜从经济含义和字段可得性出发整理因子定义，将公式实现为 Dolphin signal，并接入 PySim 批量仿真；财务与分析师数据均按当时可见信息读取。",
+      "研究评价｜统一统计覆盖率、IC / RankIC、分年度稳定性和 5 / 10 / 20 日多周期表现，结合缺失来源和极值分布定位异常结果。",
+      "日常交付｜维护因子注册表、批量执行脚本和日频监控报告，使新增因子沿同一取数、计算、验证和复核流程进入研究池。",
+    ],
+    note: "交付结果：打通“因子定义—PIT 取数—Dolphin 实现—PySim 验证—日报跟踪”的研究流程，为后续因子去冗余与组合研究提供同口径输入。",
   },
   {
     index: "03",
     label: "BETA RESEARCH",
     title: "A 股市场中低频 Beta 因子研究",
-    body: "负责 20 日尺度市场 Beta 因子挖掘，围绕价格与回撤状态、估值、流动性与冲击、订单流、趋势和技术形态构建候选信号；使用 20 个非重叠相位、分年度稳定性、环移空检验、联合回归和残差 IC 识别真正具有独立解释力的信息。",
-    note: "登记并检验 790 余种候选构造，完成候选族归因和合成。研究确认价格与回撤状态构成基准解释，趋势一致性与部分微观结构信号提供增量；缺乏独立信息的估值、简单动量和形态方向信号未纳入合成。",
+    body: "负责 A 股 20 日尺度市场 Beta 研究，围绕价格与回撤状态、估值、流动性与冲击、订单流、趋势和技术形态构建候选信号，分析不同市场状态下的中期方向与风险暴露。",
+    details: [
+      "候选构建｜将价格路径、回撤、成交与盘口信息拆成可解释的候选族，统一计算时点、持有期和交易约束，避免不同定义之间的口径漂移。",
+      "增量检验｜使用 20 个非重叠相位、分年度复核和环移 null 判断稳定性，再通过联合回归与残差 IC 检查候选信号在基准因子之外是否仍有信息。",
+      "归因合成｜以价格与回撤状态作为基准解释，保留趋势一致性和部分微观结构增量；未通过独立性检验的估值、简单动量和形态方向信号不进入合成。",
+    ],
+    note: "交付结果：形成候选登记、单因子检验、共线性归因、残差复核与组合验证的完整记录，保留失败假设，避免更换参数后重复挖掘。",
   },
 ];
 
@@ -54,7 +70,7 @@ export default function InternshipPage() {
           <a className="top-identity" href="/"><strong>贾格非</strong><span>JIA GEFEI</span></a>
           <nav aria-label="成果页导航">
             <a href="#work">核心工作</a>
-            <a href="#rerun">核验结果</a>
+            <a href="#rerun">工程核验</a>
             <a href="#method">研究口径</a>
             <a href="#diagram">工作图</a>
           </nav>
@@ -82,7 +98,7 @@ export default function InternshipPage() {
           <header className="result-intro">
             <p className="eyebrow">QUANTITATIVE RESEARCH INTERNSHIP</p>
             <h2>量化研究实习｜工作记录</h2>
-            <p>实习工作围绕一套可直接服务量化研究的数据与验证链路展开：先将 Tushare、聚源 JY 和 AkShare 数据整理为统一、可追溯的研究口径，再在同一数据底座上开展 A 股中低频 Alpha 与 Beta 因子研究。</p>
+            <p>实习工作分为三条主线：建设 Tushare、聚源 JY 与 AkShare 多源数据落盘和 PIT 研究底座；开展基本面、分析师预期与量价类中低频 Alpha 研究；开展 A 股市场中低频 Beta 研究。以下内容来自实际脚本与运行链路，公开版本不包含服务器信息、策略公式和组合参数。</p>
           </header>
 
           <section className="result-section" id="work">
@@ -95,6 +111,7 @@ export default function InternshipPage() {
                     <p className="work-label">{item.label}</p>
                     <h3>{item.title}</h3>
                     <p>{item.body}</p>
+                    <ul className="work-detail-list">{item.details.map((detail) => <li key={detail}>{detail}</li>)}</ul>
                     <p className="work-note">{item.note}</p>
                   </div>
                 </article>
@@ -103,26 +120,31 @@ export default function InternshipPage() {
           </section>
 
           <section className="result-section" id="rerun">
-            <header className="result-section-heading"><h2>公开核验结果</h2><span>VALIDATION</span></header>
-            <p className="result-section-intro">远端脚本只在合成数据、临时目录或只读模式下执行；下列记录不含公司策略参数和证券级结果。</p>
+            <header className="result-section-heading"><h2>工程与研究核验</h2><span>IMPLEMENTATION &amp; VALIDATION</span></header>
+            <p className="result-section-intro">为核对简历表述与实际实现，我对远端脚本进行了只读梳理，并仅在合成数据或临时目录复跑可公开的测试。这里保留能说明工程完成度的结果，不展示公司策略参数和证券级数据。</p>
             <div className="table-wrap">
               <table className="result-table">
                 <thead><tr><th>任务</th><th>公开结果</th><th>状态</th></tr></thead>
                 <tbody>
                   <tr>
-                    <td><strong>多源数据链路</strong><small>聚源 PIT 全量审计 · 日频任务测试</small></td>
-                    <td>97,105 个历史文件与约 1.45 亿行可见记录全部匹配；日频更新、补采和收盘核验测试 26 / 26 通过</td>
-                    <td>通过</td>
+                    <td><strong>Dolphin PIT Dataloader</strong><small>财报公告流 · as-of 对齐</small></td>
+                    <td>四张财务报表可直接解析并送入 PySim；2022 年全交易日、全股票检查未发现未来数据，兼容模式输出保持字节一致</td>
+                    <td>验证通过</td>
                   </tr>
                   <tr>
-                    <td><strong>中低频 Alpha</strong><small>实际研究数据 · 数据日 2026.09.08</small></td>
-                    <td>4,169 / 4,300 只股票进入计算，覆盖率 96.95%；5、10、20 日观察期报告均正常生成</td>
-                    <td>完成</td>
+                    <td><strong>JY CDC 与 PIT 发布</strong><small>staging · generation · watermark</small></td>
+                    <td>增量同步、PIT / mirror 构建、质量检查和原子发布顺序完整；全量审计未发现未来记录、缺失文件、表头或行数差异</td>
+                    <td>链路闭环</td>
                   </tr>
                   <tr>
-                    <td><strong>中低频 Beta</strong><small>合成数据 · 确定性测试</small></td>
-                    <td>因子合成、未来数据隔离、滚动边界、空检验和正交残差等两组测试全部通过</td>
-                    <td>22 / 22</td>
+                    <td><strong>XML / Avatar 日频任务</strong><small>日更 · 补采 · Closeout · 飞书</small></td>
+                    <td>覆盖分页拉取、短量拒收、交易日判定、pending repair、并发锁、原子写入和 Closeout 审计的测试全部通过</td>
+                    <td>测试通过</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Alpha / Beta 研究链路</strong><small>日报 · 因子合成 · 因果边界</small></td>
+                    <td>Alpha 多周期日报可稳定生成；Beta 合成、未来数据隔离、滚动边界、空检验与正交残差测试全部通过</td>
+                    <td>可复跑</td>
                   </tr>
                 </tbody>
               </table>

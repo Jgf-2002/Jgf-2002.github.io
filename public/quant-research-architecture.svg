@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 660" role="img" aria-labelledby="title desc">
   <title id="title">量化研究实习三条工作主线</title>
-  <desc id="desc">Tushare、聚源 JY 与 AkShare 数据经过落盘、标准化、PIT 对齐和质量检查后，分别支持中低频 Alpha 与 Beta 因子研究。</desc>
+  <desc id="desc">Tushare、聚源 JY 与 AkShare 数据通过 XML 和 Avatar 编排，经过 CDC 增量同步、PIT 加载、质量检查与飞书通知后，支持中低频 Alpha 与 Beta 因子研究。</desc>
   <defs>
     <filter id="paperNoise" x="-3%" y="-5%" width="106%" height="110%">
       <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="2" seed="23" result="noise"/>
@@ -16,14 +16,14 @@
 
   <rect class="bg" width="1200" height="660" rx="18"/>
   <text x="30" y="38" class="label ink" style="font-size:22px">量化研究实习 / Quant Research Internship</text>
-  <text x="31" y="63" class="small muted">多源数据工程 → 中低频 Alpha → 中低频 Beta</text>
+  <text x="31" y="63" class="small muted">XML / Avatar 编排 · CDC / PIT 发布 · Dolphin Dataloader · 飞书质量闭环</text>
   <g filter="url(#paperNoise)"><rect x="700" y="20" width="467" height="48" rx="12" fill="#eef4f8" stroke="#b9cfdf"/></g>
-  <text x="720" y="40" class="tiny muted">131 GB Research Data · 253 Factor Specs · 178 Implementations</text>
-  <text x="720" y="57" class="tiny muted">790+ Beta Candidates · PIT / OOS / Deterministic Validation</text>
+  <text x="720" y="40" class="tiny muted">SOURCE → ORCHESTRATE → PUBLISH → DATALOAD → VALIDATE</text>
+  <text x="720" y="57" class="tiny muted">PIT consistency shared by data engineering, Alpha and Beta research</text>
 
   <rect x="25" y="92" width="1150" height="183" rx="18" class="lane" stroke="#83abd0"/>
   <text x="45" y="120" class="label muted">01 DATA ENGINEERING / 多源数据落盘与研究底座</text>
-  <text x="862" y="119" class="tiny muted">collect → normalize → as-of → quality</text>
+  <text x="802" y="119" class="tiny muted">source → dagflow → generation → dataload → notify</text>
   <g transform="translate(55 145)">
     <rect width="150" height="88" rx="12" class="node blue-fill"/>
     <text x="15" y="24" class="node-code">D0 / TUSHARE</text><text x="15" y="49" class="node-title">A 股与多资产</text><text x="15" y="70" class="tiny muted">量价 · 财务 · 指数等</text>
@@ -38,11 +38,11 @@
   </g>
   <g transform="translate(605 145)">
     <rect width="210" height="88" rx="12" class="node gray-fill"/>
-    <text x="15" y="24" class="node-code">D3 / LAND &amp; ALIGN</text><text x="15" y="49" class="node-title">落盘与统一口径</text><text x="15" y="70" class="tiny muted">代码 · 字段 · 交易日 · 公告日</text>
+    <text x="15" y="24" class="node-code">D3 / XML · AVATAR</text><text x="15" y="49" class="node-title">任务编排与增量落盘</text><text x="15" y="70" class="tiny muted">Dagflow · CDC · staging · generation</text>
   </g>
   <g transform="translate(875 145)">
     <rect width="250" height="88" rx="12" class="node green-fill"/>
-    <text x="15" y="24" class="node-code">D4 / PIT &amp; QUALITY</text><text x="15" y="49" class="node-title">PIT 数据与质量闭环</text><text x="15" y="70" class="tiny muted">增量更新 · 补采 · 审计 · 原子输出</text>
+    <text x="15" y="24" class="node-code">D4 / PIT · DATALOAD · QA</text><text x="15" y="49" class="node-title">PIT 加载与质量闭环</text><text x="15" y="70" class="tiny muted">as-of · atomic publish · 飞书告警</text>
   </g>
   <path d="M205 189C213 182 217 182 223 189" class="flow" marker-end="url(#arrowBlue)"/>
   <path d="M375 189C383 182 387 182 393 189" class="flow" marker-end="url(#arrowBlue)"/>
@@ -89,5 +89,5 @@
   <text x="1014" y="572" class="tiny" fill="#bd632a">无独立增量 → 淘汰并登记</text>
 
   <path d="M57 618C276 603 466 632 680 613C820 601 952 604 1142 617" class="pass" marker-end="url(#arrowGreen)"/>
-  <text x="45" y="645" class="tiny muted">OUTPUT: DAILY DATASET · FACTOR IMPLEMENTATION · VALIDATION REPORT · RESEARCH REGISTRY</text>
+  <text x="45" y="645" class="tiny muted">OUTPUT: VERSIONED PIT DATA · DOLPHIN SIGNAL · PYSIM REPORT · FEISHU STATUS · RESEARCH REGISTRY</text>
 </svg>

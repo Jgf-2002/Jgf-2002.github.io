@@ -39,9 +39,9 @@ const experience = [
     role: "量化研究实习生",
     scope: "量化数据工程 · 中低频 Alpha · 中低频 Beta",
     points: [
-      "负责 Tushare、聚源 JY 与 AkShare 多源数据的采集落盘和日常维护，覆盖财务报表、分析师预期、A 股量价及多资产行情；完成字段映射、增量更新、历史补采、PIT 对齐与质量监控，累计整理约 131 GB 研究数据。",
-      "开展基本面、分析师预期与量价类中低频 Alpha 因子研究；整理 253 个基本面及分析师因子定义，完成 178 个 Dolphin / PySim 可运行实现，并按统一口径检验覆盖率、IC、RankIC 与跨年度稳定性。",
-      "开展 A 股市场中低频 Beta 研究，围绕价格状态、估值、流动性、订单流和技术形态登记并检验 790 余种候选构造；通过非重叠相位、空检验、联合回归与残差 IC 识别独立信息并完成因子合成。",
+      "负责 Tushare、聚源 JY 与 AkShare 多源研究数据的生产化落盘：通过 XML 配置 Avatar / Dagflow 日更、补采与 Closeout 任务，以 binlog CDC 驱动 JY 增量同步和 PIT 快照发布，并开发 Dolphin C++ PIT Dataloader、质量巡检与飞书告警，形成从数据接入到研究消费的闭环。",
+      "负责基本面、分析师预期与量价类中低频 Alpha 研究，围绕价值、质量、成长、现金流、营运效率和预期修正完成因子定义、PIT 取数、Dolphin / PySim 实现与日频跟踪；按覆盖率、IC / RankIC、年度稳定性和多周期表现筛选候选因子。",
+      "负责 A 股 20 日尺度市场 Beta 研究，系统构建价格与回撤状态、估值、流动性与冲击、订单流、趋势和技术形态信号；使用非重叠相位、环移空检验、联合回归与残差 IC 分离共线信息，完成候选因子归因、取舍与合成。",
     ],
   },
   {
@@ -175,7 +175,7 @@ export default function Home() {
                     <p className="entry-role">{item.role}</p>
                     <p className="entry-scope">{item.scope}</p>
                     <ul>{item.points.map((point) => <li key={point}>{point}</li>)}</ul>
-                    <a className="result-link" href="/internship/">查看实习成果与脚本复跑记录 <External /></a>
+                    <a className="result-link" href="/internship/">查看数据链路与研究记录 <External /></a>
                   </div>
                 </article>
               ) : (
@@ -215,7 +215,8 @@ export default function Home() {
               <div><dt>编程与数据</dt><dd>Python · Pandas · NumPy · scikit-learn · Matplotlib · Seaborn</dd></div>
               <div><dt>机器学习</dt><dd>XGBoost · LightGBM · CatBoost · 特征工程 · 网格与随机搜索</dd></div>
               <div><dt>量化研究</dt><dd>因子工程 · IC / RankIC · 滚动样本外 · 空检验 · 消融实验 · Backtrader</dd></div>
-              <div><dt>工程工具</dt><dd>Dolphin · PySim · Selenium · EasyOCR · RAG · UVM</dd></div>
+              <div><dt>量化工程</dt><dd>Dolphin · PySim · Avatar / Dagflow · MySQL binlog CDC · PIT 数据工程 · 飞书自动化</dd></div>
+              <div><dt>其他工具</dt><dd>Selenium · EasyOCR · RAG · UVM</dd></div>
               <div><dt>个人研究实践</dt><dd>自 2025 年 5 月记录 A 股模拟组合；截至简历日期累计收益 47.97%，最大回撤 6%（模拟记录）。</dd></div>
             </dl>
           </section>
