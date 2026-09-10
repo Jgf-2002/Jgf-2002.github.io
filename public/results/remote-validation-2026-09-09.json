@@ -24,14 +24,13 @@
     },
     "jy_incremental_publish": {
       "change_detection": "MySQL binlog CDC",
-      "flow": ["staging", "latest / PIT / mirror build", "quality checks", "atomic generation publish", "watermark commit"],
-      "failure_behavior": "retain pending state for idempotent rerun; do not replace the published generation"
+      "flow": ["staging", "latest / PIT / mirror build", "quality checks", "atomic generation publish"]
     },
     "dolphin_pit_dataloader": {
       "implementation": "C++",
       "alignment": "announcement-date as-of alignment inside Dolphin",
       "source_mapping": "Tushare / JY fields, security codes and merge rules configured in XML",
-      "downstream_contract": "signal and PySim code remain unchanged when the source mapping changes"
+      "downstream_contract": "factor backtests reuse the same workflow when switching data sources through XML mapping"
     },
     "quality_and_notification": {
       "checks": ["field count", "non-null", "future date", "freshness", "upstream reconciliation", "row count", "output audit"],

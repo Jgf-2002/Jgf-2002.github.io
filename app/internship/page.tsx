@@ -25,14 +25,13 @@ const External = () => <span aria-hidden="true">↗</span>;
 const projectRecords = [
   {
     title: "数据平台与 PIT 底座",
-    body: "负责 Tushare、聚源 JY 与 AkShare 数据的生产化接入。Tushare / JY 提供 A 股、财务与分析师等核心数据，AkShare 补充海外指数、中概股与商品行情；所有数据在进入研究前统一证券代码、字段、交易日和公告可见时间口径。",
+    body: "负责 Tushare、聚源 JY 与 AkShare 数据的生产化接入。Tushare / JY 提供 A 股、财务与分析师等核心数据，AkShare 补充海外指数、中概股与商品行情。",
     details: [
       "任务编排｜使用 XML 配置 Avatar / Dagflow，将 A 股主链、Universe、期货、期权、基金、债券、指数权重、延迟补采与日终 Closeout 拆分为独立节点，统一调度、重试、超时、进程锁和日志。",
-      "增量发布｜基于 MySQL binlog CDC 识别 JY 变更分区，数据依次经过 staging、latest / PIT / mirror 构建和质量检查后原子发布；仅在发布成功后提交 watermark，失败任务保留 pending state 供幂等重跑。",
-      "PIT 加载｜开发 Dolphin C++ 财报 PIT Dataloader，直接读取财报公告流并按公告日完成 as-of 对齐；通过 XML 维护 Tushare / JY 字段、证券代码和报表合并规则，下游 signal / PySim 切换数据源时无需改动研究代码。",
-      "质量闭环｜配置字段数、非空、未来日期、freshness、上游对账与行数检查，区分正常、待上游发布与阻断异常；将缺数 / 短量、CDC 状态和产出审计汇总为飞书卡片。",
+      "增量发布｜基于 MySQL binlog CDC 识别 JY 变更分区，数据依次经过 staging、latest / PIT / mirror 构建、质量检查与 generation 原子发布。",
+      "PIT 加载｜开发 Dolphin C++ 财报 PIT Dataloader，直接读取财报公告流并按公告日完成 as-of 对齐；通过 XML 维护 Tushare / JY 字段、证券代码与报表合并规则，使下游因子回测切换数据源时能够一键复用。",
+      "质量闭环｜围绕字段完整性、非空率、未来日期、数据新鲜度、上游对账和行数一致性设置自动校验；按正常、待上游发布、阻断异常分级，将缺数 / 短量、CDC 状态与产出审计汇总为飞书卡片，支持可视化审阅和异常定位。",
     ],
-    note: "交付结果：形成“数据源—任务编排—增量同步—PIT 加载—质量检查—研究消费”的完整链路，补采或单节点失败不会覆盖已经发布的数据。",
   },
   {
     title: "中低频 Alpha 研究",
@@ -94,7 +93,7 @@ export default function InternshipPage() {
                       const [term, description] = detail.split("｜");
                       return <li key={detail}><strong>{term}</strong><span>{description}</span></li>;
                     })}</ul>
-                    <p className="work-note">{item.note}</p>
+                    {item.note && <p className="work-note">{item.note}</p>}
                   </div>
                 </article>
               ))}
