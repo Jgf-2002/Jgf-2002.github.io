@@ -1,6 +1,21 @@
 {
   "verified_on": "2026-09-09",
   "scope": "Public, sanitized results from the remote research environment",
+  "primary_workstreams": [
+    {
+      "name": "multi-source research data engineering",
+      "sources": ["Tushare", "JY", "AkShare"],
+      "coverage": ["fundamentals", "analyst expectations", "A-share price-volume data", "multi-asset market data", "selected overseas market data"]
+    },
+    {
+      "name": "medium-to-low-frequency Alpha research",
+      "coverage": ["fundamentals", "analyst expectations", "price-volume signals"]
+    },
+    {
+      "name": "medium-to-low-frequency market Beta research",
+      "holding_period_days": 20
+    }
+  ],
   "alpha_daily_report": {
     "status": "completed",
     "exit_code": 0,
@@ -79,20 +94,6 @@
       "concurrency locks",
       "atomic writes",
       "dry-run isolation"
-    ]
-  },
-  "macro_audit_snapshot": {
-    "mode": "read-only inspection of existing audit output",
-    "pit_spotchecks_passed": 72,
-    "pit_spotchecks_total": 72,
-    "deterministic_rerun_consistent": true,
-    "sensitivity_variants": 46,
-    "state_timeline_segments": 26,
-    "historical_stress_checks_passed": 4,
-    "historical_stress_checks_total": 6,
-    "retained_limitations": [
-      "2015 market dislocation",
-      "2018 deleveraging phase"
     ]
   },
   "not_disclosed": [

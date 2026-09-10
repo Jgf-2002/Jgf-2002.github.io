@@ -4,18 +4,18 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "量化研究实习成果 | 贾格非",
-  description: "大寒智能量化实习期间的研究工作、脚本复跑结果与公开审计摘要。",
+  description: "大寒智能量化实习期间的多源数据工程、中低频 Alpha 与 Beta 因子研究。",
   openGraph: {
     type: "article",
     url: "https://jgf-2002.github.io/internship/",
     title: "量化研究实习成果 | 贾格非",
-    description: "研究工作、脚本复跑结果与公开审计摘要。",
+    description: "多源数据工程、中低频 Alpha 与 Beta 因子研究。",
     images: [],
   },
   twitter: {
     card: "summary",
     title: "量化研究实习成果 | 贾格非",
-    description: "研究工作、脚本复跑结果与公开审计摘要。",
+    description: "多源数据工程、中低频 Alpha 与 Beta 因子研究。",
     images: [],
   },
 };
@@ -25,45 +25,24 @@ const External = () => <span aria-hidden="true">↗</span>;
 const projectRecords = [
   {
     index: "01",
-    label: "CROSS-SECTIONAL ALPHA",
-    title: "A 股基本面与分析师预期 Alpha",
-    body: "负责价值、质量、成长、现金流、营运效率和分析师预期等因子族的定义整理、实现与批量检验。已整理 253 个因子定义，其中 178 个完成 Dolphin / PySim 可运行实现；统一输出覆盖率、IC、RankIC、分年度稳定性及多周期观察结果。",
-    note: "最近一次日报复跑：4,300 只股票中 4,169 只进入计算，覆盖率 96.95%；5 / 10 / 20 日观察期均正常生成。该方向仍在研究中，不公开声明未经确认的超额收益。",
+    label: "DATA ENGINEERING",
+    title: "多源金融数据落盘与研究数据底座",
+    body: "负责 Tushare、聚源 JY 与 AkShare 数据接入和落盘，覆盖财务报表、分析师预期、A 股量价与资金流，以及指数、基金、期货、期权和部分海外市场数据。建立全量初始化、日增量更新、缺口补采和日终核验链路，统一证券代码、字段、交易日和公告可见时间口径。",
+    note: "累计整理约 131 GB 历史数据；完成 Dolphin 原生财务 PIT 加载和 Tushare / JY 字段映射。聚源 PIT 全量审计覆盖 22 张表、97,105 个文件和约 1.45 亿行可见记录，未发现未来数据或文件、内容、行数和表头差异。",
   },
   {
     index: "02",
-    label: "MARKET BETA",
-    title: "20 日尺度市场 Beta 因子库",
-    body: "围绕价格结构、流动性与冲击、估值、订单流、技术形态及既有信号，登记并检验 790 余种候选构造。建立 20 个非重叠相位、逐年稳定性、环移空检验、联合回归和残差 IC 的统一筛选口径，用于区分表面相关与独立增量。",
-    note: "完成候选族归因与合成：以价格及回撤状态作为基准，保留通过增量检验的趋势与微观结构信息；同时修正滚动标准化破坏水平信息、不同样本直接比较两类研究口径问题。研究结论已确认，尚未接入实盘。",
+    label: "ALPHA RESEARCH",
+    title: "基本面、分析师预期与量价 Alpha",
+    body: "负责 A 股中低频 Alpha 因子研究，覆盖价值、质量、成长、现金流、营运效率、分析师预期和量价等方向；完成因子定义、PIT 取数、Dolphin / PySim 实现、批量回测和日报跟踪，并以统一证券池和收益窗口比较候选因子。",
+    note: "整理 253 个基本面及分析师因子定义，完成 178 个可运行实现；按覆盖率、IC、RankIC、分年度稳定性和多周期表现进行筛选。最近一次日报覆盖 4,300 只股票，其中 4,169 只进入计算，覆盖率 96.95%。",
   },
   {
     index: "03",
-    label: "MACRO ALLOCATION",
-    title: "月频宏观状态与多资产配置",
-    body: "构建货币、信用、增长、通胀与市场确认指标组成的月频 PIT 面板，研究股票、债券、商品和黄金在不同宏观状态下的相对配置关系；交付信号表、状态时间线、样本外回测、执行滞后及参数敏感性报告。",
-    note: "审计记录包含 72 / 72 项历史时点检查、46 组敏感性变体和 26 个连续状态阶段；六个历史压力阶段中四个通过，2015 年与 2018 年的失败结果作为模型边界保留。",
-  },
-  {
-    index: "04",
-    label: "PIT LOADER",
-    title: "Dolphin 原生财务 PIT 加载器",
-    body: "将原先依赖 Python 预烘焙的财务数据链路改为 Dolphin 原生 C++ 加载：直接读取公告事件，按交易日选择当时可见的最新报告，并通过 XML 字段映射支持 Tushare 与聚源 JY 数据源切换；完成四张财务报表及利润表补充字段的统一合并。",
-    note: "以 2022 年全交易日、全股票范围核验：未来数据违规为 0，字段覆盖约 89%，合并差异为 0.001%—0.003%；兼容模式与旧输出逐字节一致，并完成 PySim 端到端因子运行。",
-  },
-  {
-    index: "05",
-    label: "JY FINANCIAL DATA",
-    title: "聚源财务数据同步与 PIT 数据集",
-    body: "建设 latest、历史 PIT 与兼容镜像三层数据链路，按公告可见时间生成不可回写的历史分区；以 manifest 管理表结构和字段映射，并加入空结果保护、删除标记、原子发布、增量同步及每日质量检查。",
-    note: "完整性审计覆盖 22 张表、97,105 个 PIT 文件和 145,171,459 行当时可见记录；过滤 1,826 行尚不可见数据，未来行、缺失文件、内容差异、行数差异和表头差异均为 0。",
-  },
-  {
-    index: "06",
-    label: "DAILY DATA PIPELINE",
-    title: "Tushare 多资产日频数据任务",
-    body: "维护 A 股及多资产日更任务，补充交易日识别、分页完整性检查、延迟数据补采、失败任务登记、按分区修复、收盘核验与日终报告；脚本统一支持重试、断点续跑和 dry-run，并以锁和原子写入避免并发覆盖。",
-    note: "本次在隔离临时目录复跑 26 项测试，全部通过，耗时 0.50 秒；覆盖超 6,000 行分页、短响应拒绝、交易日边界、待补任务闭环、并发锁、原子输出和 dry-run 网络隔离。",
+    label: "BETA RESEARCH",
+    title: "A 股市场中低频 Beta 因子研究",
+    body: "负责 20 日尺度市场 Beta 因子挖掘，围绕价格与回撤状态、估值、流动性与冲击、订单流、趋势和技术形态构建候选信号；使用 20 个非重叠相位、分年度稳定性、环移空检验、联合回归和残差 IC 识别真正具有独立解释力的信息。",
+    note: "登记并检验 790 余种候选构造，完成候选族归因和合成。研究确认价格与回撤状态构成基准解释，趋势一致性与部分微观结构信号提供增量；缺乏独立信息的估值、简单动量和形态方向信号未纳入合成。",
   },
 ];
 
@@ -74,9 +53,9 @@ export default function InternshipPage() {
         <div className="topbar-inner">
           <a className="top-identity" href="/"><strong>贾格非</strong><span>JIA GEFEI</span></a>
           <nav aria-label="成果页导航">
-            <a href="#work">项目记录</a>
-            <a href="#rerun">复跑结果</a>
-            <a href="#audit">审计摘要</a>
+            <a href="#work">核心工作</a>
+            <a href="#rerun">核验结果</a>
+            <a href="#method">研究口径</a>
             <a href="#diagram">工作图</a>
           </nav>
           <a className="github-link" href="/">返回主页</a>
@@ -93,7 +72,7 @@ export default function InternshipPage() {
           </div>
           <dl className="result-meta">
             <div><dt>时间</dt><dd>2025.11 — 至今</dd></div>
-            <div><dt>方向</dt><dd>因子研究、宏观配置与量化数据工程</dd></div>
+            <div><dt>方向</dt><dd>数据工程、中低频 Alpha 与 Beta</dd></div>
             <div><dt>核验日期</dt><dd>2026.09.09</dd></div>
           </dl>
           <div className="result-sidebar-link"><a className="raw-result-link" href="/results/remote-validation-2026-09-09.json" target="_blank" rel="noreferrer">查看机器可读结果 <External /></a></div>
@@ -101,13 +80,13 @@ export default function InternshipPage() {
 
         <div className="result-content">
           <header className="result-intro">
-            <p className="eyebrow">实习工作与公开核验记录</p>
+            <p className="eyebrow">QUANTITATIVE RESEARCH INTERNSHIP</p>
             <h2>量化研究实习｜工作记录</h2>
-            <p>实习工作分为研究与数据工程两部分：研究侧完成 Alpha、市场 Beta 和宏观配置课题，工程侧负责财务 PIT 加载、数据源同步与日频任务。以下按项目记录个人承担的工作、形成的产物和可公开核验的结果；公司策略公式、组合参数、信号值和证券明细不公开。</p>
+            <p>实习工作围绕一套可直接服务量化研究的数据与验证链路展开：先将 Tushare、聚源 JY 和 AkShare 数据整理为统一、可追溯的研究口径，再在同一数据底座上开展 A 股中低频 Alpha 与 Beta 因子研究。</p>
           </header>
 
           <section className="result-section" id="work">
-            <header className="result-section-heading"><h2>项目记录</h2><span>SELECTED WORK</span></header>
+            <header className="result-section-heading"><h2>核心工作</h2><span>CORE RESPONSIBILITIES</span></header>
             <div className="work-list">
               {projectRecords.map((item) => (
                 <article key={item.index}>
@@ -124,57 +103,46 @@ export default function InternshipPage() {
           </section>
 
           <section className="result-section" id="rerun">
-            <header className="result-section-heading"><h2>脚本复跑结果</h2><span>RERUN</span></header>
+            <header className="result-section-heading"><h2>公开核验结果</h2><span>VALIDATION</span></header>
             <p className="result-section-intro">远端脚本只在合成数据、临时目录或只读模式下执行；下列记录不含公司策略参数和证券级结果。</p>
             <div className="table-wrap">
               <table className="result-table">
                 <thead><tr><th>任务</th><th>公开结果</th><th>状态</th></tr></thead>
                 <tbody>
                   <tr>
-                    <td><strong>Alpha 因子日报</strong><small>实际研究数据 · 数据日 2026.09.08</small></td>
-                    <td>4,169 / 4,300 个样本，覆盖率 96.95%；生成 5、10、20 日三个观察期报告</td>
+                    <td><strong>多源数据链路</strong><small>聚源 PIT 全量审计 · 日频任务测试</small></td>
+                    <td>97,105 个历史文件与约 1.45 亿行可见记录全部匹配；日频更新、补采和收盘核验测试 26 / 26 通过</td>
+                    <td>通过</td>
+                  </tr>
+                  <tr>
+                    <td><strong>中低频 Alpha</strong><small>实际研究数据 · 数据日 2026.09.08</small></td>
+                    <td>4,169 / 4,300 只股票进入计算，覆盖率 96.95%；5、10、20 日观察期报告均正常生成</td>
                     <td>完成</td>
                   </tr>
                   <tr>
-                    <td><strong>市场 Beta 合成测试</strong><small>合成数据 · 确定性测试</small></td>
-                    <td>两组测试分别为 10 / 10、12 / 12 通过</td>
+                    <td><strong>中低频 Beta</strong><small>合成数据 · 确定性测试</small></td>
+                    <td>因子合成、未来数据隔离、滚动边界、空检验和正交残差等两组测试全部通过</td>
                     <td>22 / 22</td>
-                  </tr>
-                  <tr>
-                    <td><strong>多资产日频任务</strong><small>临时目录 · 模拟依赖</small></td>
-                    <td>分页、交易日解析、补采、收盘核验和并发控制测试全部通过</td>
-                    <td>26 / 26</td>
-                  </tr>
-                  <tr>
-                    <td><strong>聚源 PIT 完整性</strong><small>全量只读审计</small></td>
-                    <td>97,105 个历史文件与 145,171,459 行可见记录全部匹配</td>
-                    <td>0 差异</td>
                   </tr>
                 </tbody>
               </table>
             </div>
-            <p className="method-note">测试与审计覆盖未来数据隔离、滚动边界、环移空检验、正交残差、分页完整性、待补任务闭环、并发锁和原子化输出。</p>
+            <p className="method-note">公开结果仅用于说明数据和研究流程完成情况；策略公式、组合参数、信号值、IC / RankIC 数值和证券明细不公开。</p>
           </section>
 
-          <section className="result-section" id="audit">
-            <header className="result-section-heading"><h2>宏观研究审计摘要</h2><span>AUDIT</span></header>
-            <p className="result-section-intro">本次读取已有审计产物进行核对，没有改写生产输出。</p>
+          <section className="result-section" id="method">
+            <header className="result-section-heading"><h2>统一研究口径</h2><span>RESEARCH STANDARD</span></header>
             <dl className="audit-list">
-              <div><dt>PIT 时点抽查</dt><dd><strong>72 / 72</strong><span>未发现提前读取</span></dd></div>
-              <div><dt>确定性复跑</dt><dd><strong>一致</strong><span>相同输入得到相同输出</span></dd></div>
-              <div><dt>参数敏感性</dt><dd><strong>46</strong><span>组变体</span></dd></div>
-              <div><dt>状态时间线</dt><dd><strong>26</strong><span>个连续阶段</span></dd></div>
-              <div><dt>历史压力检查</dt><dd><strong>4 / 6</strong><span>通过预设检查</span></dd></div>
+              <div><dt>数据时点</dt><dd><strong>PIT</strong><span>按交易日只读取当时已公开的数据</span></dd></div>
+              <div><dt>Alpha 评价</dt><dd><strong>IC</strong><span>覆盖率、IC / RankIC、年度稳定性与多周期表现</span></dd></div>
+              <div><dt>Beta 增量</dt><dd><strong>20 相位</strong><span>空检验、联合回归与残差 IC</span></dd></div>
+              <div><dt>工程交付</dt><dd><strong>可复跑</strong><span>增量更新、失败补采、质量检查与原子化输出</span></dd></div>
             </dl>
-            <div className="limitation-note">
-              <h3>保留的失败案例</h3>
-              <p>2015 年市场异常波动与 2018 年去杠杆阶段未通过预设检查，分别出现恢复判断偏早和状态分类偏差；两段结果作为模型适用边界保留。</p>
-            </div>
           </section>
 
           <section className="result-section" id="diagram">
             <header className="result-section-heading"><h2>工作结构图</h2><span>MAP</span></header>
-            <p className="result-section-intro">数据可见性与质量控制是三类研究的共同底座。点击图片可单独查看。</p>
+            <p className="result-section-intro">多源数据落盘是研究底座，向上分别支持中低频 Alpha 与 Beta 研究。点击图片可单独查看。</p>
             <figure className="result-figure">
               <div><a href="/quant-research-architecture.svg" target="_blank" rel="noreferrer"><img src="/quant-research-architecture.svg" alt="量化研究与数据工程工作关系图" /></a></div>
               <figcaption><span>量化研究实习工作结构图</span><a href="/quant-research-architecture.svg" target="_blank" rel="noreferrer">单独查看 <External /></a></figcaption>
